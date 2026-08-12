@@ -1,0 +1,215 @@
+{
+    "common": {
+        "save": "حفظ",
+        "cancel": "إلغاء",
+        "delete": "حذف",
+        "back": "رجوع",
+        "edit": "تعديل",
+        "create": "إنشاء",
+        "update": "تحديث",
+        "loading": "جارٍ التحميل",
+        "confirm": "تأكيد",
+        "close": "إغلاق",
+        "yes": "نعم",
+        "no": "لا",
+        "or": "أو",
+        "of": "من"
+    },
+    "navigation": {
+        "dashboard": "لوحة التحكم",
+        "offers": "العروض",
+        "settings": "الإعدادات",
+        "logout": "تسجيل الخروج",
+        "platform": "المنصة",
+        "repository": "المستودع",
+        "documentation": "التوثيق"
+    },
+    "auth": {
+        "login": {
+            "title": "تسجيل الدخول إلى حسابك",
+            "description": "أدخل بريدك الإلكتروني وكلمة المرور أدناه لتسجيل الدخول",
+            "email": "البريد الإلكتروني",
+            "email_placeholder": "email{'@'}example.com",
+            "password": "كلمة المرور",
+            "forgot_password": "نسيت كلمة المرور؟",
+            "remember_me": "تذكرني",
+            "submit": "تسجيل الدخول",
+            "no_account": "ليس لديك حساب؟",
+            "sign_up": "إنشاء حساب"
+        },
+        "register": {
+            "title": "إنشاء حساب",
+            "description": "أدخل بياناتك أدناه لإنشاء حسابك",
+            "name": "الاسم",
+            "name_placeholder": "الاسم الكامل",
+            "email": "البريد الإلكتروني",
+            "password": "كلمة المرور",
+            "confirm_password": "تأكيد كلمة المرور",
+            "submit": "إنشاء الحساب",
+            "has_account": "لديك حساب بالفعل؟",
+            "log_in": "تسجيل الدخول"
+        },
+        "forgot_password": {
+            "title": "نسيت كلمة المرور",
+            "description": "أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور",
+            "email": "البريد الإلكتروني",
+            "submit": "إرسال رابط إعادة التعيين",
+            "or_return": "أو، العودة إلى",
+            "log_in": "تسجيل الدخول"
+        },
+        "reset_password": {
+            "title": "إعادة تعيين كلمة المرور",
+            "description": "يرجى إدخال كلمة المرور الجديدة أدناه",
+            "email": "البريد الإلكتروني",
+            "password": "كلمة المرور",
+            "confirm_password": "تأكيد كلمة المرور",
+            "submit": "إعادة تعيين كلمة المرور"
+        }
+    },
+    "offers": {
+        "index": {
+            "title": "العروض",
+            "description": "إدارة عروض السفر الخاصة بك",
+            "create_button": "إنشاء عرض",
+            "empty_title": "لا توجد عروض بعد",
+            "empty_description": "أنشئ عرضك الأول للبدء.",
+            "delete_title": "حذف العرض",
+            "delete_confirmation": "هل أنت متأكد أنك تريد حذف \"{title}\"؟ لا يمكن التراجع عن هذا الإجراء."
+        },
+        "create": {
+            "title": "إنشاء عرض",
+            "description": "إنشاء عرض سفر جديد",
+            "step_details": "التفاصيل",
+            "step_variants": "الأنواع والأسعار",
+            "step_images": "الصور",
+            "step_review": "المراجعة",
+            "offer_title": "العنوان",
+            "title_placeholder": "مثال: رحلة صيفية إلى إسطنبول",
+            "description_label": "الوصف",
+            "variants_pricing": "الأنواع والأسعار",
+            "add_variant": "+ إضافة نوع",
+            "images": "الصور",
+            "review": "المراجعة",
+            "untitled_offer": "عرض بدون عنوان",
+            "variants": "الأنواع",
+            "no_date": "بدون تاريخ",
+            "no_airport": "بدون مطار",
+            "collectif": "جماعي:",
+            "room_of_4": "غرفة من 4:",
+            "room_of_3": "غرفة من 3:",
+            "room_of_2": "غرفة من 2:",
+            "feeding": "الإطعام:",
+            "images_count": "الصور ({count})",
+            "images_will_be_uploaded": "سيتم رفع {count} صورة(صور).",
+            "previous": "السابق",
+            "next": "التالي",
+            "submit": "إنشاء العرض"
+        },
+        "edit": {
+            "title": "تعديل العرض",
+            "editing": "جارٍ التعديل: {title}",
+            "images_detail": "الصور ({existing} موجودة + {new} جديدة)",
+            "images_will_be_deleted": "سيتم حذف {count} صورة(صور).",
+            "submit": "تحديث العرض"
+        },
+        "show": {
+            "code": "الكود: {code}",
+            "gallery": "المعرض",
+            "variants": "الأنواع",
+            "total_variants": "{count} المجموع",
+            "type": "النوع",
+            "price": "السعر",
+            "collectif_room": "غرفة جماعية",
+            "room_of_four": "غرفة من أربعة",
+            "room_of_three": "غرفة من ثلاثة",
+            "room_of_two": "غرفة من اثنين",
+            "feeding": "الإطعام",
+            "delete_title": "حذف العرض",
+            "delete_confirmation": "هل أنت متأكد أنك تريد حذف هذا العرض؟ لا يمكن التراجع عن هذا الإجراء."
+        }
+    },
+    "offer_components": {
+        "no_image": "بدون صورة",
+        "variants_count": "{count} أنواع",
+        "next": "التالي:",
+        "view": "عرض",
+        "variant_number": "النوع {number}",
+        "travel_date": "تاريخ السفر",
+        "airport": "المطار",
+        "airport_placeholder": "مثال: الجزائر",
+        "collectif_room": "غرفة جماعية",
+        "room_of_four": "غرفة من أربعة",
+        "room_of_three": "غرفة من ثلاثة",
+        "room_of_two": "غرفة من اثنين",
+        "feeding": "الإطعام",
+        "upload_prompt": "انقر للرفع أو اسحب وأفلت",
+        "upload_formats": "PNG, JPG, WEBP (حد أقصى 5 ميغابايت)",
+        "offer_image": "صورة العرض {order}",
+        "upload_preview": "معاينة الرفع {number}"
+    },
+    "settings": {
+        "profile": {
+            "title": "الملف الشخصي",
+            "description": "تحديث اسمك وعنوان بريدك الإلكتروني",
+            "name": "الاسم",
+            "name_placeholder": "الاسم الكامل",
+            "email": "البريد الإلكتروني",
+            "email_placeholder": "البريد الإلكتروني",
+            "locale": "اللغة"
+        },
+        "security": {
+            "title": "تحديث كلمة المرور",
+            "description": "تأكد من أن حسابك يستخدم كلمة مرور طويلة وعشوائية للبقاء آمنًا",
+            "current_password": "كلمة المرور الحالية",
+            "new_password": "كلمة المرور الجديدة",
+            "confirm_password": "تأكيد كلمة المرور"
+        },
+        "appearance": {
+            "title": "إعدادات المظهر",
+            "description": "تحديث إعدادات المظهر لحسابك"
+        }
+    },
+    "delete_user": {
+        "title": "حذف الحساب",
+        "description": "حذف حسابك وجميع موارده",
+        "warning": "تحذير",
+        "warning_description": "يرجى المتابعة بحذر، لا يمكن التراجع عن هذا الإجراء.",
+        "confirm_title": "هل أنت متأكد أنك تريد حذف حسابك؟",
+        "confirm_description": "بمجرد حذف حسابك، سيتم حذف جميع موارده وبياناته أيضًا بشكل دائم. يرجى إدخال كلمة المرور للتأكيد أنك تريد حذف حسابك نهائيًا.",
+        "submit": "حذف الحساب"
+    },
+    "appearance": {
+        "light": "فاتح",
+        "dark": "داكن",
+        "system": "النظام"
+    },
+    "errors": {
+        "something_went_wrong": "حدث خطأ ما."
+    },
+    "welcome": {
+        "lets_get_started": "لنبدأ",
+        "ecosystem_description": "لارافيل لديه نظام بيئي غني بشكل لا يصدق.",
+        "suggest_starting": "نقترح أن تبدأ بما يلي.",
+        "read_the": "اقرأ",
+        "documentation": "التوثيق",
+        "watch_video": "شاهد دروس الفيديو على",
+        "laracasts": "Laracasts",
+        "deploy_now": "نشر الآن"
+    },
+    "editor": {
+        "placeholder": "اكتب شيئًا...",
+        "url_prompt": "الرابط"
+    },
+    "accessibility": {
+        "hide_password": "إخفاء كلمة المرور",
+        "show_password": "إظهار كلمة المرور",
+        "toggle_sidebar": "تبديل الشريط الجانبي",
+        "navigation_menu": "قائمة التنقل"
+    },
+    "language_switcher": {
+        "label": "اللغة",
+        "en": "English",
+        "ar": "العربية",
+        "fr": "Français"
+    }
+}

@@ -1,0 +1,215 @@
+{
+    "common": {
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "back": "Back",
+        "edit": "Edit",
+        "create": "Create",
+        "update": "Update",
+        "loading": "Loading",
+        "confirm": "Confirm",
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No",
+        "or": "Or",
+        "of": "of"
+    },
+    "navigation": {
+        "dashboard": "Dashboard",
+        "offers": "Offers",
+        "settings": "Settings",
+        "logout": "Log out",
+        "platform": "Platform",
+        "repository": "Repository",
+        "documentation": "Documentation"
+    },
+    "auth": {
+        "login": {
+            "title": "Log in to your account",
+            "description": "Enter your email and password below to log in",
+            "email": "Email address",
+            "email_placeholder": "email{'@'}example.com",
+            "password": "Password",
+            "forgot_password": "Forgot your password?",
+            "remember_me": "Remember me",
+            "submit": "Log in",
+            "no_account": "Don't have an account?",
+            "sign_up": "Sign up"
+        },
+        "register": {
+            "title": "Create an account",
+            "description": "Enter your details below to create your account",
+            "name": "Name",
+            "name_placeholder": "Full name",
+            "email": "Email address",
+            "password": "Password",
+            "confirm_password": "Confirm password",
+            "submit": "Create account",
+            "has_account": "Already have an account?",
+            "log_in": "Log in"
+        },
+        "forgot_password": {
+            "title": "Forgot password",
+            "description": "Enter your email to receive a password reset link",
+            "email": "Email address",
+            "submit": "Email password reset link",
+            "or_return": "Or, return to",
+            "log_in": "log in"
+        },
+        "reset_password": {
+            "title": "Reset password",
+            "description": "Please enter your new password below",
+            "email": "Email",
+            "password": "Password",
+            "confirm_password": "Confirm password",
+            "submit": "Reset password"
+        }
+    },
+    "offers": {
+        "index": {
+            "title": "Offers",
+            "description": "Manage your travel offers",
+            "create_button": "Create Offer",
+            "empty_title": "No offers yet",
+            "empty_description": "Create your first offer to get started.",
+            "delete_title": "Delete Offer",
+            "delete_confirmation": "Are you sure you want to delete \"{title}\"? This action cannot be undone."
+        },
+        "create": {
+            "title": "Create Offer",
+            "description": "Create a new travel offer",
+            "step_details": "Details",
+            "step_variants": "Variants & Pricing",
+            "step_images": "Images",
+            "step_review": "Review",
+            "offer_title": "Title",
+            "title_placeholder": "e.g. Summer Getaway to Istanbul",
+            "description_label": "Description",
+            "variants_pricing": "Variants & Pricing",
+            "add_variant": "+ Add Variant",
+            "images": "Images",
+            "review": "Review",
+            "untitled_offer": "Untitled Offer",
+            "variants": "Variants",
+            "no_date": "No date",
+            "no_airport": "No airport",
+            "collectif": "Collectif:",
+            "room_of_4": "Room of 4:",
+            "room_of_3": "Room of 3:",
+            "room_of_2": "Room of 2:",
+            "feeding": "Feeding:",
+            "images_count": "Images ({count})",
+            "images_will_be_uploaded": "{count} image(s) will be uploaded.",
+            "previous": "Previous",
+            "next": "Next",
+            "submit": "Create Offer"
+        },
+        "edit": {
+            "title": "Edit Offer",
+            "editing": "Editing: {title}",
+            "images_detail": "Images ({existing} existing + {new} new)",
+            "images_will_be_deleted": "{count} image(s) will be deleted.",
+            "submit": "Update Offer"
+        },
+        "show": {
+            "code": "Code: {code}",
+            "gallery": "Gallery",
+            "variants": "Variants",
+            "total_variants": "{count} total",
+            "type": "Type",
+            "price": "Price",
+            "collectif_room": "Collectif Room",
+            "room_of_four": "Room of Four",
+            "room_of_three": "Room of Three",
+            "room_of_two": "Room of Two",
+            "feeding": "Feeding",
+            "delete_title": "Delete Offer",
+            "delete_confirmation": "Are you sure you want to delete this offer? This action cannot be undone."
+        }
+    },
+    "offer_components": {
+        "no_image": "No image",
+        "variants_count": "{count} variants",
+        "next": "Next:",
+        "view": "View",
+        "variant_number": "Variant {number}",
+        "travel_date": "Travel Date",
+        "airport": "Airport",
+        "airport_placeholder": "e.g. Algiers",
+        "collectif_room": "Collectif Room",
+        "room_of_four": "Room of Four",
+        "room_of_three": "Room of Three",
+        "room_of_two": "Room of Two",
+        "feeding": "Feeding",
+        "upload_prompt": "Click to upload or drag and drop",
+        "upload_formats": "PNG, JPG, WEBP (max 5MB)",
+        "offer_image": "Offer image {order}",
+        "upload_preview": "Upload preview {number}"
+    },
+    "settings": {
+        "profile": {
+            "title": "Profile",
+            "description": "Update your name and email address",
+            "name": "Name",
+            "name_placeholder": "Full name",
+            "email": "Email address",
+            "email_placeholder": "Email address",
+            "locale": "Language"
+        },
+        "security": {
+            "title": "Update password",
+            "description": "Ensure your account is using a long, random password to stay secure",
+            "current_password": "Current password",
+            "new_password": "New password",
+            "confirm_password": "Confirm password"
+        },
+        "appearance": {
+            "title": "Appearance settings",
+            "description": "Update the appearance settings for your account"
+        }
+    },
+    "delete_user": {
+        "title": "Delete account",
+        "description": "Delete your account and all of its resources",
+        "warning": "Warning",
+        "warning_description": "Please proceed with caution, this cannot be undone.",
+        "confirm_title": "Are you sure you want to delete your account?",
+        "confirm_description": "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+        "submit": "Delete account"
+    },
+    "appearance": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
+    "errors": {
+        "something_went_wrong": "Something went wrong."
+    },
+    "welcome": {
+        "lets_get_started": "Let's get started",
+        "ecosystem_description": "Laravel has an incredibly rich ecosystem.",
+        "suggest_starting": "We suggest starting with the following.",
+        "read_the": "Read the",
+        "documentation": "Documentation",
+        "watch_video": "Watch video tutorials at",
+        "laracasts": "Laracasts",
+        "deploy_now": "Deploy now"
+    },
+    "editor": {
+        "placeholder": "Write something...",
+        "url_prompt": "URL"
+    },
+    "accessibility": {
+        "hide_password": "Hide password",
+        "show_password": "Show password",
+        "toggle_sidebar": "Toggle Sidebar",
+        "navigation_menu": "Navigation menu"
+    },
+    "language_switcher": {
+        "label": "Language",
+        "en": "English",
+        "ar": "العربية",
+        "fr": "Français"
+    }
+}

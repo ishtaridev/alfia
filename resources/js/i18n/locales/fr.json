@@ -1,0 +1,215 @@
+{
+    "common": {
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "back": "Retour",
+        "edit": "Modifier",
+        "create": "Créer",
+        "update": "Mettre à jour",
+        "loading": "Chargement",
+        "confirm": "Confirmer",
+        "close": "Fermer",
+        "yes": "Oui",
+        "no": "Non",
+        "or": "Ou",
+        "of": "de"
+    },
+    "navigation": {
+        "dashboard": "Tableau de bord",
+        "offers": "Offres",
+        "settings": "Paramètres",
+        "logout": "Déconnexion",
+        "platform": "Plateforme",
+        "repository": "Dépôt",
+        "documentation": "Documentation"
+    },
+    "auth": {
+        "login": {
+            "title": "Connectez-vous à votre compte",
+            "description": "Entrez votre email et mot de passe ci-dessous pour vous connecter",
+            "email": "Adresse email",
+            "email_placeholder": "email{'@'}exemple.com",
+            "password": "Mot de passe",
+            "forgot_password": "Mot de passe oublié?",
+            "remember_me": "Se souvenir de moi",
+            "submit": "Se connecter",
+            "no_account": "Vous n'avez pas de compte?",
+            "sign_up": "S'inscrire"
+        },
+        "register": {
+            "title": "Créer un compte",
+            "description": "Entrez vos coordonnées ci-dessous pour créer votre compte",
+            "name": "Nom",
+            "name_placeholder": "Nom complet",
+            "email": "Adresse email",
+            "password": "Mot de passe",
+            "confirm_password": "Confirmer le mot de passe",
+            "submit": "Créer le compte",
+            "has_account": "Vous avez déjà un compte?",
+            "log_in": "Se connecter"
+        },
+        "forgot_password": {
+            "title": "Mot de passe oublié",
+            "description": "Entrez votre email pour recevoir un lien de réinitialisation",
+            "email": "Adresse email",
+            "submit": "Envoyer le lien de réinitialisation",
+            "or_return": "Ou, revenir à",
+            "log_in": "se connecter"
+        },
+        "reset_password": {
+            "title": "Réinitialiser le mot de passe",
+            "description": "Veuillez entrer votre nouveau mot de passe ci-dessous",
+            "email": "Email",
+            "password": "Mot de passe",
+            "confirm_password": "Confirmer le mot de passe",
+            "submit": "Réinitialiser le mot de passe"
+        }
+    },
+    "offers": {
+        "index": {
+            "title": "Offres",
+            "description": "Gérez vos offres de voyage",
+            "create_button": "Créer une offre",
+            "empty_title": "Pas encore d'offres",
+            "empty_description": "Créez votre première offre pour commencer.",
+            "delete_title": "Supprimer l'offre",
+            "delete_confirmation": "Êtes-vous sûr de vouloir supprimer \"{title}\"? Cette action est irréversible."
+        },
+        "create": {
+            "title": "Créer une offre",
+            "description": "Créez une nouvelle offre de voyage",
+            "step_details": "Détails",
+            "step_variants": "Variantes & Tarifs",
+            "step_images": "Images",
+            "step_review": "Résumé",
+            "offer_title": "Titre",
+            "title_placeholder": "ex: Séjour d'été à Istanbul",
+            "description_label": "Description",
+            "variants_pricing": "Variantes & Tarifs",
+            "add_variant": "+ Ajouter une variante",
+            "images": "Images",
+            "review": "Résumé",
+            "untitled_offer": "Offre sans titre",
+            "variants": "Variantes",
+            "no_date": "Pas de date",
+            "no_airport": "Pas d'aéroport",
+            "collectif": "Collectif:",
+            "room_of_4": "Chambre de 4:",
+            "room_of_3": "Chambre de 3:",
+            "room_of_2": "Chambre de 2:",
+            "feeding": "Pension:",
+            "images_count": "Images ({count})",
+            "images_will_be_uploaded": "{count} image(s) seront téléchargées.",
+            "previous": "Précédent",
+            "next": "Suivant",
+            "submit": "Créer l'offre"
+        },
+        "edit": {
+            "title": "Modifier l'offre",
+            "editing": "Modification: {title}",
+            "images_detail": "Images ({existing} existantes + {new} nouvelles)",
+            "images_will_be_deleted": "{count} image(s) seront supprimées.",
+            "submit": "Mettre à jour l'offre"
+        },
+        "show": {
+            "code": "Code: {code}",
+            "gallery": "Galerie",
+            "variants": "Variantes",
+            "total_variants": "{count} total",
+            "type": "Type",
+            "price": "Prix",
+            "collectif_room": "Chambre Collectif",
+            "room_of_four": "Chambre de Quatre",
+            "room_of_three": "Chambre de Trois",
+            "room_of_two": "Chambre de Deux",
+            "feeding": "Pension",
+            "delete_title": "Supprimer l'offre",
+            "delete_confirmation": "Êtes-vous sûr de vouloir supprimer cette offre? Cette action est irréversible."
+        }
+    },
+    "offer_components": {
+        "no_image": "Pas d'image",
+        "variants_count": "{count} variantes",
+        "next": "Suivant:",
+        "view": "Voir",
+        "variant_number": "Variante {number}",
+        "travel_date": "Date de voyage",
+        "airport": "Aéroport",
+        "airport_placeholder": "ex: Alger",
+        "collectif_room": "Chambre Collectif",
+        "room_of_four": "Chambre de Quatre",
+        "room_of_three": "Chambre de Trois",
+        "room_of_two": "Chambre de Deux",
+        "feeding": "Pension",
+        "upload_prompt": "Cliquez pour télécharger ou glissez-déposez",
+        "upload_formats": "PNG, JPG, WEBP (max 5Mo)",
+        "offer_image": "Image de l'offre {order}",
+        "upload_preview": "Aperçu du téléchargement {number}"
+    },
+    "settings": {
+        "profile": {
+            "title": "Profil",
+            "description": "Mettez à jour votre nom et adresse email",
+            "name": "Nom",
+            "name_placeholder": "Nom complet",
+            "email": "Adresse email",
+            "email_placeholder": "Adresse email",
+            "locale": "Langue"
+        },
+        "security": {
+            "title": "Mettre à jour le mot de passe",
+            "description": "Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester sécurisé",
+            "current_password": "Mot de passe actuel",
+            "new_password": "Nouveau mot de passe",
+            "confirm_password": "Confirmer le mot de passe"
+        },
+        "appearance": {
+            "title": "Paramètres d'apparence",
+            "description": "Mettez à jour les paramètres d'apparence de votre compte"
+        }
+    },
+    "delete_user": {
+        "title": "Supprimer le compte",
+        "description": "Supprimez votre compte et toutes ses ressources",
+        "warning": "Attention",
+        "warning_description": "Veuillez procéder avec prudence, cette action est irréversible.",
+        "confirm_title": "Êtes-vous sûr de vouloir supprimer votre compte?",
+        "confirm_description": "Une fois votre compte supprimé, toutes ses ressources et données seront également supprimées de manière permanente. Veuillez entrer votre mot de passe pour confirmer que vous souhaitez supprimer définitivement votre compte.",
+        "submit": "Supprimer le compte"
+    },
+    "appearance": {
+        "light": "Clair",
+        "dark": "Sombre",
+        "system": "Système"
+    },
+    "errors": {
+        "something_went_wrong": "Une erreur s'est produite."
+    },
+    "welcome": {
+        "lets_get_started": "Commençons",
+        "ecosystem_description": "Laravel a un écosystème incroyablement riche.",
+        "suggest_starting": "Nous vous suggérons de commencer par ce qui suit.",
+        "read_the": "Lisez la",
+        "documentation": "Documentation",
+        "watch_video": "Regardez les tutoriels vidéo sur",
+        "laracasts": "Laracasts",
+        "deploy_now": "Déployer maintenant"
+    },
+    "editor": {
+        "placeholder": "Écrivez quelque chose...",
+        "url_prompt": "URL"
+    },
+    "accessibility": {
+        "hide_password": "Masquer le mot de passe",
+        "show_password": "Afficher le mot de passe",
+        "toggle_sidebar": "Basculer la barre latérale",
+        "navigation_menu": "Menu de navigation"
+    },
+    "language_switcher": {
+        "label": "Langue",
+        "en": "English",
+        "ar": "العربية",
+        "fr": "Français"
+    }
+}
