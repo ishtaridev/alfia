@@ -8,7 +8,6 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -26,7 +25,7 @@ class CreateAdminCommand extends Command
         $role = Role::tryFrom($roleValue);
 
         if ($role === null) {
-            $this->error("Invalid role: {$roleValue}. Allowed values: " . implode(', ', array_column(Role::cases(), 'value')));
+            $this->error("Invalid role: {$roleValue}. Allowed values: ".implode(', ', array_column(Role::cases(), 'value')));
 
             return self::FAILURE;
         }
