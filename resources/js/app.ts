@@ -5,10 +5,11 @@ import { initializeDirection } from '@/composables/useDirection';
 import { i18n } from '@/i18n';
 import AppLayout from '@/layouts/AppLayout.vue';
 import AuthLayout from '@/layouts/AuthLayout.vue';
+import OfferLayout from '@/layouts/OfferLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { initializeFlashToast } from '@/lib/flashToast';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Alfia';
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
@@ -17,6 +18,7 @@ createInertiaApp({
         app.use(plugin);
         app.use(i18n);
         i18n.global.locale.value = props.initialPage.props.locale as 'en' | 'fr' | 'ar';
+        initializeDirection();
 
         if (el) {
             app.mount(el);
@@ -28,6 +30,8 @@ createInertiaApp({
         switch (true) {
             case name === 'Welcome':
                 return null;
+            case name === 'offers/Reserve' || name === 'offers/ReservationSuccess':
+                return OfferLayout;
             case name.startsWith('auth/'):
                 return AuthLayout;
             case name.startsWith('settings/'):
@@ -43,9 +47,6 @@ createInertiaApp({
 
 // This will set light / dark mode on page load...
 initializeTheme();
-
-// This will set direction (ltr/rtl) based on locale...
-initializeDirection();
 
 // This will listen for flash toast data from the server...
 initializeFlashToast();

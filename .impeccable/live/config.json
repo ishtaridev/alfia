@@ -1,0 +1,5 @@
+{
+  "files": ["resources/views/app.blade.php"],
+  "insertBefore": "</body>",
+  "commentSyntax": "html"
+}

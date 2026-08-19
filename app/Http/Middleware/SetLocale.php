@@ -36,10 +36,6 @@ class SetLocale
             }
         }
 
-        if ($locale = $request->getPreferredLanguage(self::SUPPORTED_LOCALES)) {
-            return $locale;
-        }
-
-        return config('app.locale', 'en');
+        return config('app.locale', 'ar');
     }
 }

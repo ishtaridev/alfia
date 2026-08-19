@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link, router } from '@inertiajs/vue3';
-import { Plus } from '@lucide/vue';
+import { Plus, PackageOpen } from '@lucide/vue';
 import { ref } from 'vue';
 import Heading from '@/components/Heading.vue';
 import OfferCard from '@/components/offers/OfferCard.vue';
@@ -66,32 +66,35 @@ const deleteOffer = () => {
 <template>
     <Head :title="t('offers.index.title')" />
 
-    <div class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-        <div class="flex items-center justify-between">
+    <div class="flex flex-1 flex-col gap-6 p-4 md:p-6 lg:p-8">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <Heading
                 :title="t('offers.index.title')"
                 :description="t('offers.index.description')"
             />
             <Button as-child>
                 <Link :href="offersCreate().url">
-                    <Plus class="mr-2 h-4 w-4" />
+                    <Plus class="me-2 h-4 w-4" />
                     {{ t('offers.index.create_button') }}
                 </Link>
             </Button>
         </div>
 
-        <div v-if="offers.data.length === 0" class="flex flex-col items-center justify-center py-16 text-center">
-            <p class="text-lg font-medium text-muted-foreground">{{ t('offers.index.empty_title') }}</p>
-            <p class="mt-1 text-sm text-muted-foreground/70">{{ t('offers.index.empty_description') }}</p>
-            <Button class="mt-4" as-child>
+        <div v-if="offers.data.length === 0" class="flex flex-col items-center justify-center py-20 text-center">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
+                <PackageOpen class="h-8 w-8 text-muted-foreground" />
+            </div>
+            <p class="mt-4 text-lg font-semibold text-card-foreground">{{ t('offers.index.empty_title') }}</p>
+            <p class="mt-1 text-sm text-muted-foreground">{{ t('offers.index.empty_description') }}</p>
+            <Button class="mt-6" as-child>
                 <Link :href="offersCreate().url">
-                    <Plus class="mr-2 h-4 w-4" />
+                    <Plus class="me-2 h-4 w-4" />
                     {{ t('offers.index.create_button') }}
                 </Link>
             </Button>
         </div>
 
-        <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <OfferCard
                 v-for="offer in offers.data"
                 :key="offer.id"
@@ -100,13 +103,13 @@ const deleteOffer = () => {
             />
         </div>
 
-        <div v-if="offers.last_page > 1" class="mt-4 flex justify-center gap-2">
+        <div v-if="offers.last_page > 1" class="flex justify-center gap-2">
             <Button
                 v-for="page in offers.last_page"
                 :key="page"
                 variant="outline"
                 size="sm"
-                :class="{ 'bg-primary text-primary-foreground': page === offers.current_page }"
+                :class="{ 'bg-primary text-primary-foreground hover:bg-primary/90': page === offers.current_page }"
                 as-child
             >
                 <Link :href="offersIndex({ query: { page: String(page) } }).url">

@@ -7,13 +7,14 @@ import ImageUploader from '@/components/offers/ImageUploader.vue';
 import OfferStepper from '@/components/offers/OfferStepper.vue';
 import VariantFormCard from '@/components/offers/VariantFormCard.vue';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { TipTapEditor } from '@/components/ui/editor';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useLocale } from '@/composables/useLocale';
 import { index as offersIndex, create as offersCreate, store as offersStore } from '@/routes/offers';
 
-const { t } = useLocale();
+const { t, direction } = useLocale();
 
 defineOptions({
     layout: {
@@ -138,7 +139,7 @@ const submit = () => {
 <template>
     <Head :title="t('offers.create.title')" />
 
-    <div class="flex h-full flex-1 flex-col gap-6 overflow-x-auto rounded-xl p-4">
+    <div class="flex flex-1 flex-col gap-6 p-4 md:p-6 lg:p-8">
         <Heading
             :title="t('offers.create.title')"
             :description="t('offers.create.description')"
@@ -146,26 +147,41 @@ const submit = () => {
 
         <OfferStepper :steps="steps" :current-step="currentStep" />
 
-        <div class="mt-4">
-            <div v-if="currentStep === 0" class="mx-auto max-w-2xl space-y-6">
-                <div class="space-y-2">
-                    <Label for="title">{{ t('offers.create.offer_title') }}</Label>
-                    <Input
-                        id="title"
-                        v-model="title"
-                        :placeholder="t('offers.create.title_placeholder')"
-                    />
-                </div>
+        <p class="text-center text-sm text-muted-foreground">
+            {{ t('offers.create.step_counter', { current: currentStep + 1, total: steps.length }) }}
+        </p>
 
-                <div class="space-y-2">
-                    <Label>{{ t('offers.create.description_label') }}</Label>
-                    <TipTapEditor v-model="description" />
-                </div>
+        <div>
+            <div v-if="currentStep === 0" class="mx-auto max-w-2xl">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{{ t('offers.create.step_details') }}</CardTitle>
+                        <CardDescription>{{ t('offers.create.step_subtitle_details') }}</CardDescription>
+                    </CardHeader>
+                    <CardContent class="space-y-6">
+                        <div class="space-y-2">
+                            <Label for="title">{{ t('offers.create.offer_title') }}</Label>
+                            <Input
+                                id="title"
+                                v-model="title"
+                                :placeholder="t('offers.create.title_placeholder')"
+                            />
+                        </div>
+
+                        <div class="space-y-2">
+                            <Label>{{ t('offers.create.description_label') }}</Label>
+                            <TipTapEditor v-model="description" />
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
 
             <div v-if="currentStep === 1" class="mx-auto max-w-3xl space-y-4">
                 <div class="flex items-center justify-between">
-                    <h3 class="text-lg font-medium">{{ t('offers.create.variants_pricing') }}</h3>
+                    <div>
+                        <h3 class="text-lg font-semibold">{{ t('offers.create.variants_pricing') }}</h3>
+                        <p class="text-sm text-muted-foreground">{{ t('offers.create.step_subtitle_variants') }}</p>
+                    </div>
                     <Button type="button" variant="outline" size="sm" @click="addVariant">
                         {{ t('offers.create.add_variant') }}
                     </Button>
@@ -183,59 +199,82 @@ const submit = () => {
                 />
             </div>
 
-            <div v-if="currentStep === 2" class="mx-auto max-w-3xl space-y-4">
-                <h3 class="text-lg font-medium">{{ t('offers.create.images') }}</h3>
-                <ImageUploader v-model="images" />
+            <div v-if="currentStep === 2" class="mx-auto max-w-3xl">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{{ t('offers.create.images') }}</CardTitle>
+                        <CardDescription>{{ t('offers.create.step_subtitle_images') }}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ImageUploader v-model="images" />
+                    </CardContent>
+                </Card>
             </div>
 
-            <div v-if="currentStep === 3" class="mx-auto max-w-3xl space-y-6">
-                <h3 class="text-lg font-medium">{{ t('offers.create.review') }}</h3>
-
-                <div class="rounded-lg border border-border p-4">
-                    <h4 class="font-medium">{{ title || t('offers.create.untitled_offer') }}</h4>
-                    <div
-                        v-if="description"
-                        class="tiptap mt-2 text-sm text-muted-foreground prose prose-sm"
-                        v-html="description"
-                    />
+            <div v-if="currentStep === 3" class="mx-auto max-w-3xl space-y-4">
+                <div>
+                    <h3 class="text-lg font-semibold text-card-foreground">{{ t('offers.create.review') }}</h3>
+                    <p class="text-sm text-muted-foreground">{{ t('offers.create.step_subtitle_review') }}</p>
                 </div>
 
-                <div class="space-y-3">
-                    <h4 class="font-medium">{{ t('offers.create.variants') }}</h4>
-                    <div
-                        v-for="(variant, index) in variants"
-                        :key="index"
-                        class="rounded-lg border border-border p-3"
-                    >
-                        <div class="flex items-center gap-4 text-sm">
-                            <span class="font-medium">{{ variant.travel_date || t('offers.create.no_date') }}</span>
-                            <span class="text-muted-foreground">|</span>
-                            <span>{{ variant.airport || t('offers.create.no_airport') }}</span>
+                <Card>
+                    <CardHeader>
+                        <CardTitle class="text-base">{{ title || t('offers.create.untitled_offer') }}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div
+                            v-if="description"
+                            class="tiptap prose prose-sm text-sm text-muted-foreground"
+                            v-html="description"
+                        />
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle class="text-base">{{ t('offers.create.variants') }}</CardTitle>
+                    </CardHeader>
+                    <CardContent class="space-y-3">
+                        <div
+                            v-for="(variant, index) in variants"
+                            :key="index"
+                            class="flex flex-col gap-3 rounded-lg bg-muted/50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
+                        >
+                            <div class="flex items-center gap-3">
+                                <span class="font-medium text-card-foreground">{{ variant.travel_date || t('offers.create.no_date') }}</span>
+                                <span class="text-muted-foreground">|</span>
+                                <span class="text-muted-foreground">{{ variant.airport || t('offers.create.no_airport') }}</span>
+                            </div>
+                            <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                                <span>{{ t('offers.create.collectif') }} <span class="font-medium tabular-nums text-card-foreground">{{ variant.pricing.collectif_room }} DZD</span></span>
+                                <span>{{ t('offers.create.room_of_4') }} <span class="font-medium tabular-nums text-card-foreground">{{ variant.pricing.room_of_four }} DZD</span></span>
+                                <span>{{ t('offers.create.room_of_3') }} <span class="font-medium tabular-nums text-card-foreground">{{ variant.pricing.room_of_three }} DZD</span></span>
+                                <span>{{ t('offers.create.room_of_2') }} <span class="font-medium tabular-nums text-card-foreground">{{ variant.pricing.room_of_two }} DZD</span></span>
+                                <span>{{ t('offers.create.feeding') }} <span class="font-medium tabular-nums text-card-foreground">{{ variant.pricing.feeding }} DZD</span></span>
+                            </div>
                         </div>
-                        <div class="mt-2 grid grid-cols-5 gap-2 text-xs text-muted-foreground">
-                            <div>{{ t('offers.create.collectif') }} {{ variant.pricing.collectif_room }}</div>
-                            <div>{{ t('offers.create.room_of_4') }} {{ variant.pricing.room_of_four }}</div>
-                            <div>{{ t('offers.create.room_of_3') }} {{ variant.pricing.room_of_three }}</div>
-                            <div>{{ t('offers.create.room_of_2') }} {{ variant.pricing.room_of_two }}</div>
-                            <div>{{ t('offers.create.feeding') }} {{ variant.pricing.feeding }}</div>
-                        </div>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
 
-                <div v-if="images.length > 0" class="space-y-2">
-                    <h4 class="font-medium">{{ t('offers.create.images_count', { count: images.length }) }}</h4>
-                    <p class="text-sm text-muted-foreground">{{ t('offers.create.images_will_be_uploaded', { count: images.length }) }}</p>
-                </div>
+                <Card v-if="images.length > 0">
+                    <CardHeader>
+                        <CardTitle class="text-base">{{ t('offers.create.images_count', { count: images.length }) }}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-sm text-muted-foreground">{{ t('offers.create.images_will_be_uploaded', { count: images.length }) }}</p>
+                    </CardContent>
+                </Card>
             </div>
         </div>
 
-        <div class="mt-6 flex items-center justify-between border-t border-border pt-4">
+        <div class="sticky bottom-0 -mx-4 mt-6 flex items-center justify-between border-t border-border bg-background px-4 py-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:-mx-6 md:px-6 lg:-mx-8 lg:px-8">
             <Button
                 variant="outline"
                 :disabled="currentStep === 0"
                 @click="prevStep"
             >
-                <ArrowLeft class="mr-2 h-4 w-4" />
+                <ArrowLeft v-if="direction === 'ltr'" class="me-2 h-4 w-4" />
+                <ArrowRight v-else class="me-2 h-4 w-4" />
                 {{ t('offers.create.previous') }}
             </Button>
 
@@ -245,14 +284,15 @@ const submit = () => {
                 @click="nextStep"
             >
                 {{ t('offers.create.next') }}
-                <ArrowRight class="ml-2 h-4 w-4" />
+                <ArrowRight v-if="direction === 'ltr'" class="ms-2 h-4 w-4" />
+                <ArrowLeft v-else class="ms-2 h-4 w-4" />
             </Button>
 
             <Button
                 v-else
                 @click="submit"
             >
-                <Send class="mr-2 h-4 w-4" />
+                <Send class="me-2 h-4 w-4" />
                 {{ t('offers.create.submit') }}
             </Button>
         </div>

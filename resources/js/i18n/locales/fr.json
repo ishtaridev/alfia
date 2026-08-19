@@ -13,11 +13,14 @@
         "yes": "Oui",
         "no": "Non",
         "or": "Ou",
-        "of": "de"
+        "of": "de",
+        "previous": "Précédent",
+        "next": "Suivant"
     },
     "navigation": {
         "dashboard": "Tableau de bord",
         "offers": "Offres",
+        "users": "Utilisateurs",
         "settings": "Paramètres",
         "logout": "Déconnexion",
         "platform": "Plateforme",
@@ -83,6 +86,10 @@
             "step_variants": "Variantes & Tarifs",
             "step_images": "Images",
             "step_review": "Résumé",
+            "step_subtitle_details": "Remplissez les informations de base de cette offre",
+            "step_subtitle_variants": "Ajoutez les dates de voyage, aéroports et tarifs pour chaque variante",
+            "step_subtitle_images": "Téléchargez des photos pour présenter cette offre",
+            "step_subtitle_review": "Vérifiez tous les détails avant la création",
             "offer_title": "Titre",
             "title_placeholder": "ex: Séjour d'été à Istanbul",
             "description_label": "Description",
@@ -103,7 +110,8 @@
             "images_will_be_uploaded": "{count} image(s) seront téléchargées.",
             "previous": "Précédent",
             "next": "Suivant",
-            "submit": "Créer l'offre"
+            "submit": "Créer l'offre",
+            "step_counter": "Étape {current} sur {total}"
         },
         "edit": {
             "title": "Modifier l'offre",
@@ -125,14 +133,50 @@
             "room_of_two": "Chambre de Deux",
             "feeding": "Pension",
             "delete_title": "Supprimer l'offre",
-            "delete_confirmation": "Êtes-vous sûr de vouloir supprimer cette offre? Cette action est irréversible."
+            "delete_confirmation": "Êtes-vous sûr de vouloir supprimer cette offre? Cette action est irréversible.",
+            "offer_details": "Détails de l'offre",
+            "pricing_information": "Informations tarifaires",
+            "no_description": "Aucune description fournie.",
+            "no_variants": "Aucune variante ajoutée.",
+            "no_images": "Aucune image supplémentaire."
         }
+    },
+    "public_reserve": {
+        "page_title": "Réserver",
+        "variant_details": "Détails de la Variante",
+        "variant": "Variante de Voyage",
+        "select_variant": "Sélectionnez une date de voyage",
+        "form_title": "Réservation",
+        "form_description": "Remplissez vos coordonnées pour réserver cette offre",
+        "customer_placeholder": "ex: Jean Dupont",
+        "phone_placeholder": "ex: 0555123456",
+        "select_wilaya": "Sélectionner une wilaya",
+        "room_type_placeholder": "Sélectionner le type de chambre",
+        "room_type_label": "Choisissez votre hébergement préféré",
+        "trip_details": "Détails du Voyage",
+        "your_details": "Vos Coordonnées",
+        "pricing_breakdown": "Détail des Prix",
+        "per_person": "Par personne",
+        "total": "Total",
+        "no_variants_title": "Aucune date de voyage disponible",
+        "no_variants_description": "Cette offre n'a aucune date de voyage disponible pour le moment. Veuillez revenir plus tard.",
+        "trust_secure": "Sécurisé",
+        "trust_instant": "Instantané",
+        "trust_support": "Assistance",
+        "submit": "Réserver Maintenant",
+        "success_title": "Réservation Confirmée",
+        "success_heading": "Merci pour votre réservation !",
+        "success_description": "Nous avons reçu votre demande de réservation et vous contacterons prochainement pour confirmation.",
+        "reservation_summary": "Récapitulatif de la Réservation",
+        "back_to_offer": "Retour à l'Offre"
     },
     "offer_components": {
         "no_image": "Pas d'image",
         "variants_count": "{count} variantes",
         "next": "Suivant:",
         "view": "Voir",
+        "copy_url": "Copier le lien",
+        "copied": "Copié!",
         "variant_number": "Variante {number}",
         "travel_date": "Date de voyage",
         "airport": "Aéroport",
@@ -187,14 +231,79 @@
         "something_went_wrong": "Une erreur s'est produite."
     },
     "welcome": {
-        "lets_get_started": "Commençons",
-        "ecosystem_description": "Laravel a un écosystème incroyablement riche.",
-        "suggest_starting": "Nous vous suggérons de commencer par ce qui suit.",
-        "read_the": "Lisez la",
-        "documentation": "Documentation",
-        "watch_video": "Regardez les tutoriels vidéo sur",
-        "laracasts": "Laracasts",
-        "deploy_now": "Déployer maintenant"
+        "meta_title": "Alfia — Services d'Omra et de Voyage depuis 2000",
+        "nav_offers": "Offres",
+        "nav_contact": "Contact",
+        "nav_login": "Se connecter",
+        "nav_dashboard": "Tableau de bord",
+        "language_label": "Langue",
+        "hero_title": "Votre voyage vers les Mosquées Saintes commence par la confiance",
+        "hero_subtitle": "Alfia (Millennium) accompagne les pèlerins et voyageurs algériens depuis 2000 avec des séjours d'Omra soigneusement organisés et des services personnalisés.",
+        "cta_offers": "Découvrir les offres",
+        "cta_call": "Appeler maintenant",
+        "cta_whatsapp": "WhatsApp",
+        "trust_since": "Au service des pèlerins depuis",
+        "trust_offices": "Bureaux à travers l'Algérie",
+        "trust_support": "Équipe de support algérienne",
+        "offers_title": "Offres de voyage en vedette",
+        "offers_subtitle": "Départs sélectionnés avec dates, aéroports et prix clairs. Réservez sans compte.",
+        "offers_from": "À partir de",
+        "offers_next_departure": "Prochain départ",
+        "offers_view": "Voir les détails",
+        "offers_empty": "De nouvelles offres sont en préparation. Appelez-nous pour réserver votre place en avance.",
+        "testimonials_title": "Ce que disent les voyageurs",
+        "testimonials_subtitle": "Vrais commentaires de nos pèlerins et voyageurs.",
+        "testimonials_placeholder_note": "Exemple — remplacez par un vrai témoignage",
+        "testimonials_like": "J'aime",
+        "testimonials_reply": "Répondre",
+        "contact_title": "Visitez-nous ou appelez-nous",
+        "contact_subtitle": "Notre équipe est prête à vous aider à choisir le forfait adapté.",
+        "contact_phone": "Téléphone",
+        "contact_address": "Adresses",
+        "office_algiers": "Dar El Beida, Alger",
+        "office_oran": "Hay Al-Yasmin — Nahj Al-Aswad, Oran",
+        "office_bordj": "Rue Rabih Zawawi, Bordj Bou Arreridj",
+        "office_setif": "Bientôt",
+        "footer_rights": "Tous droits réservés.",
+        "footer_tagline": "Services d'Omra et de tourisme depuis 2000."
+    },
+    "users": {
+        "index": {
+            "title": "Utilisateurs",
+            "description": "Gérer les utilisateurs administrateurs",
+            "create_button": "Créer un utilisateur",
+            "empty_title": "Pas encore d'utilisateurs",
+            "empty_description": "Créez votre premier utilisateur administrateur pour commencer.",
+            "delete_title": "Supprimer l'utilisateur",
+            "delete_confirmation": "Êtes-vous sûr de vouloir supprimer \"{name}\" ? Cette action est irréversible."
+        },
+        "create": {
+            "title": "Créer un utilisateur",
+            "description": "Créer un nouvel utilisateur administrateur",
+            "form_title": "Nouvel utilisateur",
+            "form_description": "Remplissez les détails pour créer un nouvel utilisateur administrateur"
+        },
+        "edit": {
+            "title": "Modifier l'utilisateur",
+            "description": "Modification : {name}",
+            "form_title": "Modifier l'utilisateur",
+            "form_description": "Mettez à jour les détails de {name}"
+        },
+        "fields": {
+            "name": "Nom",
+            "name_placeholder": "Nom complet",
+            "email": "Adresse email",
+            "email_placeholder": "email{'@'}exemple.com",
+            "password": "Mot de passe",
+            "password_optional": "Laissez vide pour conserver le mot de passe actuel",
+            "confirm_password": "Confirmer le mot de passe",
+            "role": "Rôle",
+            "role_placeholder": "Sélectionner un rôle"
+        },
+        "role": {
+            "admin": "Administrateur",
+            "superadmin": "Super Administrateur"
+        }
     },
     "editor": {
         "placeholder": "Écrivez quelque chose...",
@@ -205,6 +314,125 @@
         "show_password": "Afficher le mot de passe",
         "toggle_sidebar": "Basculer la barre latérale",
         "navigation_menu": "Menu de navigation"
+    },
+    "reservations": {
+        "index": {
+            "title": "Réservations",
+            "description": "Gérer les réservations pour cette variante",
+            "create_button": "Créer une Réservation",
+            "empty_title": "Aucune réservation pour l'instant",
+            "empty_description": "Créez votre première réservation pour commencer.",
+            "delete_title": "Supprimer la Réservation",
+            "delete_confirmation": "Êtes-vous sûr de vouloir supprimer la réservation de \"{customer}\" ? Cette action est irréversible.",
+            "variant_details": "Détails de la Variante",
+            "travel_date": "Date de Voyage",
+            "airport": "Aéroport",
+            "collectif_room": "Collectif",
+            "room_of_four": "Chambre de 4",
+            "room_of_three": "Chambre de 3",
+            "room_of_two": "Chambre de 2",
+            "feeding": "Restauration",
+            "reservations_count": "{count} réservation(s)",
+            "customer": "Client",
+            "phone": "Téléphone",
+            "travellers": "Voyageurs",
+            "wilaya": "Wilaya",
+            "room_type": "Type de Chambre",
+            "status": "Statut",
+            "price": "Prix",
+            "actions": "Actions",
+            "include_feeding": "Restauration incluse",
+            "stats": {
+                "total_reservations": "Total Réservations",
+                "total_travellers": "Total Voyageurs",
+                "total_revenue": "Revenu Total",
+                "confirmed": "Confirmé",
+                "pending": "En Attente",
+                "cancelled": "Annulé"
+            },
+            "filters": {
+                "all": "Tous",
+                "confirmed": "Confirmé",
+                "pending": "En Attente",
+                "cancelled": "Annulé"
+            },
+            "view": "Voir",
+            "view_details": "Voir Détails",
+            "reservation_details": "Détails de la Réservation",
+            "pricing_breakdown": "Détail des Prix",
+            "room_price": "Prix Chambre",
+            "feeding_price": "Restauration",
+            "per_person": "par personne",
+            "total": "Total",
+            "close_view": "Fermer"
+        },
+        "create": {
+            "title": "Créer une réservation",
+            "form_title": "Nouvelle réservation",
+            "form_description": "Remplissez les détails pour créer une nouvelle réservation",
+            "customer_placeholder": "ex: Jean Dupont",
+            "phone_placeholder": "ex: 0555123456",
+            "select_wilaya": "Sélectionner une wilaya",
+            "room_type_placeholder": "Sélectionner le type de chambre",
+            "status_placeholder": "Sélectionner le statut"
+        },
+        "edit": {
+            "title": "Modifier la réservation",
+            "form_title": "Modifier la réservation",
+            "form_description": "Modification de la réservation de {customer}"
+        },
+        "room_type": {
+            "collectif": "Collectif",
+            "room_of_four": "Chambre de 4",
+            "room_of_three": "Chambre de 3",
+            "room_of_two": "Chambre de 2"
+        },
+        "status": {
+            "pending": "En attente",
+            "confirmed": "Confirmée",
+            "cancelled": "Annulée"
+        }
+    },
+    "dashboard": {
+        "title": "Tableau de bord",
+        "stats": {
+            "total_offers": "Total Offres",
+            "total_reservations": "Total Réservations",
+            "total_revenue": "Revenu Total",
+            "total_users": "Total Utilisateurs",
+            "total_travellers": "Total Voyageurs",
+            "revenue_suffix": "DZD"
+        },
+        "charts": {
+            "monthly_reservations": {
+                "title": "Réservations Mensuelles",
+                "label": "Réservations"
+            },
+            "reservation_status": {
+                "title": "Statut des Réservations"
+            },
+            "revenue_trend": {
+                "title": "Tendance des Revenus",
+                "label": "Revenu (DZD)"
+            }
+        },
+        "top_offers": {
+            "title": "Meilleures Offres",
+            "reservations_count": "{count} réservation(s)",
+            "empty": "Aucune réservation pour l'instant"
+        },
+        "recent_reservations": {
+            "title": "Réservations Récentes",
+            "empty": "Aucune réservation récente",
+            "columns": {
+                "customer": "Client",
+                "offer": "Offre",
+                "travellers": "Voyageurs",
+                "status": "Statut",
+                "price": "Prix",
+                "date": "Date"
+            }
+        }
     },
     "language_switcher": {
         "label": "Langue",

@@ -109,13 +109,15 @@ const handleDrop = (event: DragEvent) => {
             </div>
         </div>
 
-        <div class="flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-border p-8 transition-colors hover:border-primary/50 hover:bg-accent/50"
+        <div class="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-border bg-card p-8 transition-colors hover:border-primary/50 hover:bg-accent/50"
             @click="fileInput?.click()" @dragover.prevent @drop.prevent="handleDrop">
-            <Upload class="mb-2 h-8 w-8 text-muted-foreground" />
-            <p class="text-sm text-muted-foreground">
+            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-muted">
+                <Upload class="h-6 w-6 text-muted-foreground" />
+            </div>
+            <p class="mt-3 text-sm font-medium text-card-foreground">
                 {{ t('offer_components.upload_prompt') }}
             </p>
-            <p class="text-xs text-muted-foreground/70">
+            <p class="mt-1 text-xs text-muted-foreground">
                 {{ t('offer_components.upload_formats') }}
             </p>
         </div>

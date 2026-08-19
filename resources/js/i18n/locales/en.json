@@ -13,11 +13,14 @@
         "yes": "Yes",
         "no": "No",
         "or": "Or",
-        "of": "of"
+        "of": "of",
+        "previous": "Previous",
+        "next": "Next"
     },
     "navigation": {
         "dashboard": "Dashboard",
         "offers": "Offers",
+        "users": "Users",
         "settings": "Settings",
         "logout": "Log out",
         "platform": "Platform",
@@ -83,6 +86,10 @@
             "step_variants": "Variants & Pricing",
             "step_images": "Images",
             "step_review": "Review",
+            "step_subtitle_details": "Fill in the basic information about this offer",
+            "step_subtitle_variants": "Add travel dates, airports, and pricing for each variant",
+            "step_subtitle_images": "Upload photos to showcase this offer",
+            "step_subtitle_review": "Review all details before creating",
             "offer_title": "Title",
             "title_placeholder": "e.g. Summer Getaway to Istanbul",
             "description_label": "Description",
@@ -103,7 +110,8 @@
             "images_will_be_uploaded": "{count} image(s) will be uploaded.",
             "previous": "Previous",
             "next": "Next",
-            "submit": "Create Offer"
+            "submit": "Create Offer",
+            "step_counter": "Step {current} of {total}"
         },
         "edit": {
             "title": "Edit Offer",
@@ -125,14 +133,50 @@
             "room_of_two": "Room of Two",
             "feeding": "Feeding",
             "delete_title": "Delete Offer",
-            "delete_confirmation": "Are you sure you want to delete this offer? This action cannot be undone."
+            "delete_confirmation": "Are you sure you want to delete this offer? This action cannot be undone.",
+            "offer_details": "Offer Details",
+            "pricing_information": "Pricing Information",
+            "no_description": "No description provided.",
+            "no_variants": "No variants added yet.",
+            "no_images": "No additional images."
         }
+    },
+    "public_reserve": {
+        "page_title": "Reserve",
+        "variant_details": "Variant Details",
+        "variant": "Travel Variant",
+        "select_variant": "Select a travel date",
+        "form_title": "Reservation",
+        "form_description": "Fill in your details to book this offer",
+        "customer_placeholder": "e.g. John Doe",
+        "phone_placeholder": "e.g. 0555123456",
+        "select_wilaya": "Select a wilaya",
+        "room_type_placeholder": "Select room type",
+        "room_type_label": "Choose your preferred accommodation",
+        "trip_details": "Trip Details",
+        "your_details": "Your Details",
+        "pricing_breakdown": "Pricing Breakdown",
+        "per_person": "Per person",
+        "total": "Total",
+        "no_variants_title": "No travel dates available",
+        "no_variants_description": "This offer does not have any available travel dates at the moment. Please check back later.",
+        "trust_secure": "Secure",
+        "trust_instant": "Instant",
+        "trust_support": "Support",
+        "submit": "Book Now",
+        "success_title": "Reservation Confirmed",
+        "success_heading": "Thank you for your reservation!",
+        "success_description": "We have received your booking request and will contact you shortly to confirm.",
+        "reservation_summary": "Reservation Summary",
+        "back_to_offer": "Back to Offer"
     },
     "offer_components": {
         "no_image": "No image",
         "variants_count": "{count} variants",
         "next": "Next:",
         "view": "View",
+        "copy_url": "Copy URL",
+        "copied": "Copied!",
         "variant_number": "Variant {number}",
         "travel_date": "Travel Date",
         "airport": "Airport",
@@ -187,14 +231,79 @@
         "something_went_wrong": "Something went wrong."
     },
     "welcome": {
-        "lets_get_started": "Let's get started",
-        "ecosystem_description": "Laravel has an incredibly rich ecosystem.",
-        "suggest_starting": "We suggest starting with the following.",
-        "read_the": "Read the",
-        "documentation": "Documentation",
-        "watch_video": "Watch video tutorials at",
-        "laracasts": "Laracasts",
-        "deploy_now": "Deploy now"
+        "meta_title": "Alfia — Umrah & Travel Services since 2000",
+        "nav_offers": "Offers",
+        "nav_contact": "Contact",
+        "nav_login": "Log in",
+        "nav_dashboard": "Dashboard",
+        "language_label": "Language",
+        "hero_title": "Your journey to the Holy Mosques begins with trust",
+        "hero_subtitle": "Alfia (Millennium) has been serving Algerian pilgrims and travellers since 2000 with carefully planned Umrah packages and personalised travel services.",
+        "cta_offers": "Explore offers",
+        "cta_call": "Call now",
+        "cta_whatsapp": "WhatsApp us",
+        "trust_since": "Serving pilgrims since",
+        "trust_offices": "Offices across Algeria",
+        "trust_support": "Algerian support team",
+        "offers_title": "Featured travel offers",
+        "offers_subtitle": "Hand-picked departures with clear dates, airports, and prices. No account needed to reserve.",
+        "offers_from": "From",
+        "offers_next_departure": "Next departure",
+        "offers_view": "View details",
+        "offers_empty": "New offers are being prepared. Call us to reserve your seat early.",
+        "testimonials_title": "What travellers say",
+        "testimonials_subtitle": "Real comments from our pilgrims and travellers.",
+        "testimonials_placeholder_note": "Placeholder — replace with real testimonial",
+        "testimonials_like": "Like",
+        "testimonials_reply": "Reply",
+        "contact_title": "Visit or call us",
+        "contact_subtitle": "Our team is ready to help you choose the right package.",
+        "contact_phone": "Phone",
+        "contact_address": "Addresses",
+        "office_algiers": "Dar El Beida, Algiers",
+        "office_oran": "Hay Al-Yasmin — Nahj Al-Aswad, Oran",
+        "office_bordj": "Rabih Zawawi Street, Bordj Bou Arreridj",
+        "office_setif": "Coming soon",
+        "footer_rights": "All rights reserved.",
+        "footer_tagline": "Umrah & tourism services since 2000."
+    },
+    "users": {
+        "index": {
+            "title": "Users",
+            "description": "Manage admin users",
+            "create_button": "Create User",
+            "empty_title": "No users yet",
+            "empty_description": "Create your first admin user to get started.",
+            "delete_title": "Delete User",
+            "delete_confirmation": "Are you sure you want to delete \"{name}\"? This action cannot be undone."
+        },
+        "create": {
+            "title": "Create User",
+            "description": "Create a new admin user",
+            "form_title": "New User",
+            "form_description": "Fill in the details to create a new admin user"
+        },
+        "edit": {
+            "title": "Edit User",
+            "description": "Editing: {name}",
+            "form_title": "Edit User",
+            "form_description": "Update details for {name}"
+        },
+        "fields": {
+            "name": "Name",
+            "name_placeholder": "Full name",
+            "email": "Email address",
+            "email_placeholder": "email{'@'}example.com",
+            "password": "Password",
+            "password_optional": "Leave blank to keep current password",
+            "confirm_password": "Confirm password",
+            "role": "Role",
+            "role_placeholder": "Select a role"
+        },
+        "role": {
+            "admin": "Admin",
+            "superadmin": "Super Admin"
+        }
     },
     "editor": {
         "placeholder": "Write something...",
@@ -205,6 +314,125 @@
         "show_password": "Show password",
         "toggle_sidebar": "Toggle Sidebar",
         "navigation_menu": "Navigation menu"
+    },
+    "reservations": {
+        "index": {
+            "title": "Reservations",
+            "description": "Manage reservations for this variant",
+            "create_button": "Create Reservation",
+            "empty_title": "No reservations yet",
+            "empty_description": "Create your first reservation to get started.",
+            "delete_title": "Delete Reservation",
+            "delete_confirmation": "Are you sure you want to delete the reservation for \"{customer}\"? This action cannot be undone.",
+            "variant_details": "Variant Details",
+            "travel_date": "Travel Date",
+            "airport": "Airport",
+            "collectif_room": "Collectif",
+            "room_of_four": "Room of 4",
+            "room_of_three": "Room of 3",
+            "room_of_two": "Room of 2",
+            "feeding": "Feeding",
+            "reservations_count": "{count} reservation(s)",
+            "customer": "Customer",
+            "phone": "Phone",
+            "travellers": "Travellers",
+            "wilaya": "Wilaya",
+            "room_type": "Room Type",
+            "status": "Status",
+            "price": "Price",
+            "actions": "Actions",
+            "include_feeding": "Feeding included",
+            "stats": {
+                "total_reservations": "Total Reservations",
+                "total_travellers": "Total Travellers",
+                "total_revenue": "Total Revenue",
+                "confirmed": "Confirmed",
+                "pending": "Pending",
+                "cancelled": "Cancelled"
+            },
+            "filters": {
+                "all": "All",
+                "confirmed": "Confirmed",
+                "pending": "Pending",
+                "cancelled": "Cancelled"
+            },
+            "view": "View",
+            "view_details": "View Details",
+            "reservation_details": "Reservation Details",
+            "pricing_breakdown": "Pricing Breakdown",
+            "room_price": "Room Price",
+            "feeding_price": "Feeding",
+            "per_person": "per person",
+            "total": "Total",
+            "close_view": "Close"
+        },
+        "create": {
+            "title": "Create Reservation",
+            "form_title": "New Reservation",
+            "form_description": "Fill in the details to create a new reservation",
+            "customer_placeholder": "e.g. John Doe",
+            "phone_placeholder": "e.g. 0555123456",
+            "select_wilaya": "Select a wilaya",
+            "room_type_placeholder": "Select room type",
+            "status_placeholder": "Select status"
+        },
+        "edit": {
+            "title": "Edit Reservation",
+            "form_title": "Edit Reservation",
+            "form_description": "Editing reservation for {customer}"
+        },
+        "room_type": {
+            "collectif": "Collectif",
+            "room_of_four": "Room of 4",
+            "room_of_three": "Room of 3",
+            "room_of_two": "Room of 2"
+        },
+        "status": {
+            "pending": "Pending",
+            "confirmed": "Confirmed",
+            "cancelled": "Cancelled"
+        }
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "stats": {
+            "total_offers": "Total Offers",
+            "total_reservations": "Total Reservations",
+            "total_revenue": "Total Revenue",
+            "total_users": "Total Users",
+            "total_travellers": "Total Travellers",
+            "revenue_suffix": "DZD"
+        },
+        "charts": {
+            "monthly_reservations": {
+                "title": "Monthly Reservations",
+                "label": "Reservations"
+            },
+            "reservation_status": {
+                "title": "Reservation Status"
+            },
+            "revenue_trend": {
+                "title": "Revenue Trend",
+                "label": "Revenue (DZD)"
+            }
+        },
+        "top_offers": {
+            "title": "Top Offers",
+            "reservations_count": "{count} reservations",
+            "empty": "No reservations yet"
+        },
+        "recent_reservations": {
+            "title": "Recent Reservations",
+            "empty": "No recent reservations",
+            "columns": {
+                "customer": "Customer",
+                "offer": "Offer",
+                "travellers": "Travellers",
+                "status": "Status",
+                "price": "Price",
+                "date": "Date"
+            }
+        }
     },
     "language_switcher": {
         "label": "Language",

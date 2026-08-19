@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { LayoutGrid, Plane } from '@lucide/vue';
+import { LayoutGrid, Plane, Users } from '@lucide/vue';
 import { computed } from 'vue';
 import AppLogo from '@/components/AppLogo.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
@@ -19,6 +19,7 @@ import {
 import { useLocale } from '@/composables/useLocale';
 import { dashboard } from '@/routes';
 import { index as offersIndex } from '@/routes/offers';
+import { index as usersIndex } from '@/routes/users';
 import type { NavItem } from '@/types';
 
 const { t, locale } = useLocale();
@@ -26,6 +27,7 @@ const sidebarSide = computed(() => (locale.value === 'ar' ? 'right' : 'left'));
 const page = usePage();
 const user = computed(() => page.props.auth.user as { role: string });
 const canManageOffers = computed(() => user.value.role === 'admin' || user.value.role === 'superadmin');
+const isSuperAdmin = computed(() => user.value.role === 'superadmin');
 
 const mainNavItems = computed<NavItem[]>(() => {
     const items: NavItem[] = [
@@ -41,6 +43,14 @@ const mainNavItems = computed<NavItem[]>(() => {
             title: t('navigation.offers'),
             href: offersIndex().url,
             icon: Plane,
+        });
+    }
+
+    if (isSuperAdmin.value) {
+        items.push({
+            title: t('navigation.users'),
+            href: usersIndex().url,
+            icon: Users,
         });
     }
 

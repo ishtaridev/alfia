@@ -1,443 +1,533 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { dashboard, login } from '@/routes';
-import { register } from '@/routes';
+import { computed } from 'vue';
+import { dashboard, home, login } from '@/routes';
+import offers from '@/routes/offers';
+import AppLogoIcon from '@/components/AppLogoIcon.vue';
+import { useLocale } from '@/composables/useLocale';
+
+type OfferImage = { url: string };
+
+type OfferVariant = {
+    id: number;
+    travel_date: string;
+    airport: string;
+    pricing: {
+        collectif_room: number;
+        room_of_four: number;
+        room_of_three: number;
+        room_of_two: number;
+        feeding: number;
+    } | null;
+};
+
+type Offer = {
+    id: number;
+    title: string;
+    code: string;
+    description: string | null;
+    images: OfferImage[];
+    variants: OfferVariant[];
+};
+
+const props = defineProps<{
+    offers: Offer[];
+}>();
+
+const { t, locale, direction, setLocale } = useLocale();
+
+const isRtl = computed(() => direction.value === 'rtl');
+
+const phoneNumber = '035 76 30 33';
+const phoneLink = 'tel:035763033';
+const whatsappLink = 'https://wa.me/213553013105';
+
+function offerImageUrl(offer: Offer): string {
+    return offer.images[0]?.url ?? '/images/alfia.jpeg';
+}
+
+function offerLowestPrice(offer: Offer): number | null {
+    let lowest: number | null = null;
+
+    for (const variant of offer.variants) {
+        if (!variant.pricing) {
+            continue;
+        }
+
+        const prices = [
+            variant.pricing.collectif_room,
+            variant.pricing.room_of_four,
+            variant.pricing.room_of_three,
+            variant.pricing.room_of_two,
+        ];
+
+        for (const price of prices) {
+            if (price > 0 && (lowest === null || price < lowest)) {
+                lowest = price;
+            }
+        }
+    }
+
+    return lowest;
+}
+
+function nextVariant(offer: Offer): OfferVariant | null {
+    return offer.variants[0] ?? null;
+}
+
+function formatDate(dateString: string): string {
+    return new Date(dateString).toLocaleDateString(locale.value, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+}
+
+function formatPrice(price: number): string {
+    return price.toLocaleString(locale.value);
+}
+
+const languages = [
+    { code: 'en', label: 'EN' },
+    { code: 'fr', label: 'FR' },
+    { code: 'ar', label: 'AR' },
+] as const;
+
+const facebookComments = [
+    {
+        name: 'Sabi Nafissa Djema',
+        avatar: 'https://scontent.fqsf1-1.fna.fbcdn.net/v/t39.30808-1/518374103_1783971572518740_6492545234124785641_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx480x478&ctp=s40x40&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_ohc=yf2n1-DCdj8Q7kNvwEFauZr&_nc_oc=AdopWiSXx_HOENTu8Ztt_ssGcgLQE7VP5CVxPuYQmsjQU_9zBod9r8gcUVcy6jiZ8t8&_nc_zt=24&_nc_ht=scontent.fqsf1-1.fna&_nc_gid=L-HKoziBbeneA3j-V4Acqw&_nc_ss=7b2a8&oh=00_AQEPEE1LGVi1cVvNqmzbxdvoHXJgXYG7R9yHJ2bek6ZZ7Q&oe=6A8B5777',
+        body: 'بدون مجاملة اعتمرت معكم في 2019 فندق انجم مع المرشد السيد الخلوق شريف وكانت رحلة ممتعة',
+    },
+    {
+        name: 'Tulipe Taqwa',
+        avatar: 'https://scontent.fqsf1-1.fna.fbcdn.net/v/t39.30808-1/489531033_977817561092661_1041869638892551891_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx536x531&ctp=p40x40&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=t6dB7KqALNwQ7kNvwG-Cz4k&_nc_oc=AdoKbspSBidBRSk_e8mOjZ-JSJ8bqphmv8RmHjJd9X4lrS0vPLWm4mZZ1K_23aKn1ys&_nc_zt=24&_nc_ht=scontent.fqsf1-1.fna&_nc_gid=L-HKoziBbeneA3j-V4Acqw&_nc_ss=7b2a8&oh=00_AQEr1wjZD1tx-dk_VJwfjhgK1dI7T7hs9Gw7nDmnI8FXWA&oe=6A8B7345',
+        body: 'رحنا معاكم قبل عام ونصف كانت رحلة جميلة جدا وخاصة اختيار الفنادق والتنظيم 👌🏻 ، الله يرزقنا العودة 😢',
+    },
+    {
+        name: 'Samira Samirab',
+        avatar: 'https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-1/492553429_2722779091260409_8601223917656287712_n.jpg?stp=dst-jpg_tt6&cstp=mx736x735&ctp=s100x100&_nc_cat=106&ccb=1-7&_nc_sid=e99d92&_nc_ohc=27bMjzwh6AsQ7kNvwG2PO84&_nc_oc=AdqVsd0tY-eq9UCgXhgfdRnd2gmm_pjIE5EypGFbJbI2Mp6fnRIPKGj2J0eNWQONfn0&_nc_zt=24&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=PM4EiE2bbISyAJO9OuhUSg&_nc_ss=7b2a8&oh=00_AQFqwWmeEQWr8kD6ikaYQjKSbm2ImMlG21_rAG1ji5-mog&oe=6A8B480B',
+        body: 'وكالة الأليفة من بكري معروفة بصدقها وطيبة اهلها والعاملين لي فيها قمة في الاخلاق والتواضع ربي يوفق',
+    },
+    {
+        name: 'الحمد الله',
+        avatar: 'https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-1/752845733_122106237333397908_7847580169119069157_n.jpg?stp=dst-jpg_tt6&cstp=mx736x732&ctp=s100x100&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=S0GjnJT8RgIQ7kNvwFtD3dq&_nc_oc=AdowEmuK9jfsUxUMmi2ZEprtBM_bRXU5ZsCjqzlTlQu8oWvykx3jPX8J8MmXy3Zuvbw&_nc_zt=24&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=yb2Y_MvOXr8ZaSofOEomeA&_nc_ss=7b2a8&oh=00_AQEtCMllS1ALmTmK2qRhiCJHcyga5H4qAAfiFUG0eHg9OA&oe=6A8B48FB',
+        body: 'وكالة في القمة ماشاء الله تنظيم إحترافية وأخلاق ربي يوفقكم ويبارك فيكم وفي خدمتكم لضيوف الرحمان وربي يبارك في المرشدين ويكتبلكم الأجر والثواب وراح نكون ان شاء الله بين أيديكم في عمرة أخرى ❤️🕋',
+    },
+    {
+        name: 'Rabah Ammari',
+        avatar: 'https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-1/515371883_703983429148110_729023542988990592_n.jpg?stp=c0.108.720.720a_cp0_dst-jpg_tt6&cstp=mx720x720&ctp=s40x40&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=6fgptcWIL98Q7kNvwEpLsAd&_nc_oc=AdofGGvTGrK0ZbxY5wCHA2vT3akhNu04G0FAtJeSsXuFEs8BQodpu6QWAzYmjJxFL7c&_nc_zt=24&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=WkX52_xphZu1q0B5rPZpFg&_nc_ss=7b2a8&oh=00_AQG5qTGKrBdGKSsWMORY1H7JZE3MHtoPuPwX07eJ1f2ljw&oe=6A8B7152',
+        body: 'والله غير وكاله الألفية مشاء الله بيدون مجملة',
+    },
+    {
+        name: 'Walid Booyka',
+        avatar: 'https://scontent.fqsf1-1.fna.fbcdn.net/v/t39.30808-1/351327571_1020609182261009_3543011170771563675_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx950x960&ctp=s40x40&_nc_cat=111&ccb=1-7&_nc_sid=1d2534&_nc_ohc=CnoRuewLFZ0Q7kNvwHrjhkQ&_nc_oc=Adp-Flbh7PD-Fa3hfvkQCFbceWDyxt7CSNqQxXnq_QlZl5MzZ7ATAfyd5gv-mfBsNbI&_nc_zt=24&_nc_ht=scontent.fqsf1-1.fna&_nc_gid=rzYI4OBXPQYuQHliuimc6g&_nc_ss=7b2a8&oh=00_AQG8sFbdwMbSZaG6g8O6b8t-zupf-0UaLUiHCAObfb4j6g&oe=6A8B4D7C',
+        body: 'رحت في هاذ الرحلة كانت افضل رحلة في حياتي زيارة البقاع المقدسة وكانت مجمموعة مشاء الله كنا عايلة نتمنى نعاود نولى',
+    },
+];
+
+const duplicatedComments = computed(() => [
+    ...facebookComments,
+    ...facebookComments,
+]);
+
+const heroTitleWords = computed(() =>
+    String(t('welcome.hero_title')).trim().split(/\s+/),
+);
+
+const scrollAnimationClass = computed(() =>
+    direction.value === 'rtl'
+        ? 'animate-[marquee-rtl_35s_linear_infinite]'
+        : 'animate-[marquee_35s_linear_infinite]',
+);
+
+const startFadeClass = computed(() =>
+    direction.value === 'rtl'
+        ? 'bg-gradient-to-l from-[hsl(205,64%,22%)] to-transparent'
+        : 'bg-gradient-to-r from-[hsl(205,64%,22%)] to-transparent',
+);
+
+const endFadeClass = computed(() =>
+    direction.value === 'rtl'
+        ? 'bg-gradient-to-r from-[hsl(205,64%,22%)] to-transparent'
+        : 'bg-gradient-to-l from-[hsl(205,64%,22%)] to-transparent',
+);
 </script>
 
 <template>
-    <Head title="Welcome">
-        <link rel="preconnect" href="https://rsms.me/" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <Head :title="t('welcome.meta_title')">
+        <meta name="description" :content="t('welcome.hero_subtitle')" />
     </Head>
-    <div
-        class="flex min-h-screen flex-col items-center bg-[#FDFDFC] p-6 text-[#1b1b18] lg:justify-center lg:p-8 dark:bg-[#0a0a0a]"
-    >
-        <header
-            class="mb-6 w-full max-w-[335px] text-sm not-has-[nav]:hidden lg:max-w-4xl"
-        >
-            <nav class="flex items-center justify-end gap-4">
-                <Link
-                    v-if="$page.props.auth.user"
-                    :href="dashboard()"
-                    class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                >
-                    Dashboard
+
+    <div class="min-h-screen bg-background text-foreground antialiased selection:bg-white selection:text-[#184a6d]"
+        :dir="direction">
+        <!-- Navigation -->
+        <header class="sticky top-0 z-50 border-b border-white/10 bg-background/90 backdrop-blur">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+                <Link :href="home()" class="flex items-center gap-3">
+                    <AppLogoIcon class="h-10 w-10 rounded-md object-cover shadow-sm" />
                 </Link>
-                <template v-else>
-                    <Link
-                        :href="login()"
-                        class="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
-                    >
-                        Log in
+
+                <nav class="flex items-center gap-6">
+                    <a href="#offers"
+                        class="hidden text-sm font-medium text-white/80 transition-colors hover:text-white sm:inline-block">
+                        {{ t('welcome.nav_offers') }}
+                    </a>
+                    <a href="#contact"
+                        class="hidden text-sm font-medium text-white/80 transition-colors hover:text-white sm:inline-block">
+                        {{ t('welcome.nav_contact') }}
+                    </a>
+
+                    <Link v-if="$page.props.auth.user" :href="dashboard()"
+                        class="rounded-full border border-white px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-[#184a6d]">
+                        {{ t('welcome.nav_dashboard') }}
                     </Link>
-                    <Link
-                        :href="register()"
-                        class="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
-                    >
-                        Register
+                    <Link v-else :href="login()"
+                        class="rounded-full border border-white px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-white hover:text-[#184a6d]">
+                        {{ t('welcome.nav_login') }}
                     </Link>
-                </template>
-            </nav>
+
+                    <div class="flex items-center rounded-full bg-white/10 p-1">
+                        <button v-for="lang in languages" :key="lang.code" type="button"
+                            :aria-label="t('language_switcher.' + lang.code)"
+                            class="rounded-full px-2.5 py-1 text-xs font-semibold transition-all" :class="locale === lang.code
+                                ? 'bg-white text-[#184a6d] shadow-sm'
+                                : 'text-white/70 hover:text-white'
+                                " @click="setLocale(lang.code)">
+                            {{ lang.label }}
+                        </button>
+                    </div>
+                </nav>
+            </div>
         </header>
-        <div
-            class="flex w-full items-center justify-center opacity-100 transition-opacity duration-750 lg:grow starting:opacity-0"
-        >
-            <main
-                class="flex w-full max-w-[335px] flex-col-reverse overflow-hidden rounded-lg lg:max-w-4xl lg:flex-row"
-            >
+
+        <!-- Hero -->
+        <section class="relative overflow-hidden bg-background px-6 pt-20 pb-24 lg:px-8 lg:pt-28">
+            <div class="absolute inset-0 opacity-40">
                 <div
-                    class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                >
-                    <h1 class="mb-1 font-medium">Let's get started</h1>
-                    <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
-                        Laravel has an incredibly rich ecosystem. <br />We
-                        suggest starting with the following.
+                    class="absolute -end-32 -top-32 h-96 w-96 animate-[hero-float_8s_ease-in-out_infinite] rounded-full bg-white/10 blur-3xl" />
+                <div
+                    class="absolute -start-32 -bottom-32 h-96 w-96 animate-[hero-float_10s_ease-in-out_infinite_reverse] rounded-full bg-white/5 blur-3xl" />
+            </div>
+
+            <div class="relative mx-auto max-w-5xl text-center">
+                <h1 class="text-4xl leading-[1.1] font-bold tracking-tight text-balance text-white sm:text-5xl lg:text-6xl"
+                    :aria-label="t('welcome.hero_title')">
+                    <span v-for="(word, index) in heroTitleWords" :key="index"
+                        class="inline-block animate-[hero-word-reveal_0.8s_ease-out_forwards] opacity-0"
+                        :style="{ animationDelay: `${index * 90}ms` }" aria-hidden="true">
+                        {{ word
+                        }}{{
+                            index < heroTitleWords.length - 1 ? '\u00A0' : '' }} </span>
+                </h1>
+                <p
+                    class="mx-auto mt-6 max-w-2xl animate-[hero-fade-up_0.9s_ease-out_0.7s_forwards] text-lg leading-relaxed text-balance text-white/80 opacity-0">
+                    {{ t('welcome.hero_subtitle') }}
+                </p>
+
+                <div
+                    class="mt-10 flex animate-[hero-fade-up_0.9s_ease-out_0.95s_forwards] flex-col items-center justify-center gap-4 opacity-0 sm:flex-row">
+                    <a href="#offers"
+                        class="inline-flex min-w-[12rem] items-center justify-center rounded-full bg-white px-7 py-3.5 text-base font-semibold text-[#184a6d] shadow-lg shadow-black/20 transition-all hover:-translate-y-0.5 hover:bg-white/90 hover:shadow-xl hover:shadow-black/25 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#184a6d]">
+                        {{ t('welcome.cta_offers') }}
+                    </a>
+                    <div class="flex items-center gap-4 flex-col md:flex-row">
+                        <a :href="phoneLink"
+                            class="inline-flex min-w-[12rem] items-center justify-center gap-2 rounded-full border-2 border-white bg-transparent px-7 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#184a6d]">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="h-5 w-5">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                            {{ t('welcome.cta_call') }}
+                        </a>
+                        <a :href="whatsappLink" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25d366] text-white shadow-md transition-all hover:-translate-y-0.5 hover:scale-110 focus-visible:ring-2 focus-visible:ring-[#25d366] focus-visible:ring-offset-2 focus-visible:ring-offset-[#184a6d]"
+                            :aria-label="t('welcome.cta_whatsapp')">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="h-6 w-6">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Trust signals -->
+                <div
+                    class="mx-auto mt-16 flex max-w-3xl animate-[hero-fade-up_0.9s_ease-out_1.15s_forwards] flex-col items-center justify-center gap-8 border-t border-white/10 pt-10 opacity-0 sm:flex-row sm:gap-12">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white">2000</div>
+                        <div class="mt-1 text-sm text-white/70">
+                            {{ t('welcome.trust_since') }}
+                        </div>
+                    </div>
+                    <div class="hidden h-10 w-px bg-white/20 sm:block" />
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white">4</div>
+                        <div class="mt-1 text-sm text-white/70">
+                            {{ t('welcome.trust_offices') }}
+                        </div>
+                    </div>
+                    <div class="hidden h-10 w-px bg-white/20 sm:block" />
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-white">24/7</div>
+                        <div class="mt-1 text-sm text-white/70">
+                            {{ t('welcome.trust_support') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured offers -->
+        <section id="offers" class="px-6 py-24 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-12 max-w-2xl">
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                        {{ t('welcome.offers_title') }}
+                    </h2>
+                    <p class="mt-4 text-lg text-white/80">
+                        {{ t('welcome.offers_subtitle') }}
                     </p>
-                    <ul class="mb-4 flex flex-col lg:mb-6">
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-1/2 before:bottom-0 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Read the
-                                <a
-                                    href="https://laravel.com/docs"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Documentation</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                        <li
-                            class="relative flex items-center gap-4 py-2 before:absolute before:top-0 before:bottom-1/2 before:left-[0.4rem] before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A]"
-                        >
-                            <span
-                                class="relative bg-white py-1 dark:bg-[#161615]"
-                            >
-                                <span
-                                    class="flex h-3.5 w-3.5 items-center justify-center rounded-full border border-[#e3e3e0] bg-[#FDFDFC] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] dark:border-[#3E3E3A] dark:bg-[#161615]"
-                                >
-                                    <span
-                                        class="h-1.5 w-1.5 rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A]"
-                                    />
-                                </span>
-                            </span>
-                            <span>
-                                Watch video tutorials at
-                                <a
-                                    href="https://laracasts.com"
-                                    target="_blank"
-                                    class="ml-1 inline-flex items-center space-x-1 font-medium text-[#f53003] underline underline-offset-4 dark:text-[#FF4433]"
-                                >
-                                    <span>Laracasts</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-2.5 w-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <ul class="flex gap-3 text-sm leading-normal">
-                        <li>
-                            <a
-                                href="https://cloud.laravel.com"
-                                target="_blank"
-                                class="inline-block rounded-sm border border-black bg-[#1b1b18] px-5 py-1.5 text-sm leading-normal text-white hover:border-black hover:bg-black dark:border-[#eeeeec] dark:bg-[#eeeeec] dark:text-[#1C1C1A] dark:hover:border-white dark:hover:bg-white"
-                            >
-                                Deploy now
+                </div>
+
+                <div v-if="props.offers.length > 0" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <article v-for="offer in props.offers" :key="offer.id"
+                        class="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+                        <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+                            <img :src="offerImageUrl(offer)" :alt="offer.title"
+                                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                loading="lazy" />
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                        </div>
+                        <div class="flex flex-1 flex-col p-6">
+                            <h3 class="text-xl font-semibold text-[#1b1b18]" :class="isRtl ? 'leading-normal' : 'leading-tight'
+                                ">
+                                {{ offer.title }}
+                            </h3>
+                            <p v-if="offer.description" class="mt-2 line-clamp-2 text-sm text-[#6b6b64]"
+                                v-html="offer.description"></p>
+
+                            <div class="mt-4 space-y-2 border-t border-slate-100 pt-4 text-sm">
+                                <div v-if="nextVariant(offer)" class="flex items-center justify-between">
+                                    <span class="text-[#6b6b64]">
+                                        {{ t('welcome.offers_next_departure') }}
+                                    </span>
+                                    <span class="font-medium text-[#1b1b18]">
+                                        {{
+                                            formatDate(
+                                                nextVariant(offer)!.travel_date,
+                                            )
+                                        }}
+                                    </span>
+                                </div>
+                                <div v-if="offerLowestPrice(offer)" class="flex items-center justify-between">
+                                    <span class="text-[#6b6b64]">
+                                        {{ t('welcome.offers_from') }}
+                                    </span>
+                                    <span class="text-lg font-bold text-[#184a6d]">
+                                        {{
+                                            formatPrice(
+                                                offerLowestPrice(offer)!,
+                                            )
+                                        }}
+                                        DZD
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mt-auto pt-6">
+                                <Link :href="offers.reserve({ offer: offer.code })
+                                    "
+                                    class="inline-flex w-full items-center justify-center rounded-xl bg-[#184a6d] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#123a55] focus-visible:ring-2 focus-visible:ring-[#184a6d] focus-visible:ring-offset-2">
+                                    {{ t('welcome.offers_view') }}
+                                </Link>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div v-else class="rounded-2xl border border-dashed border-white/20 bg-white/5 p-12 text-center">
+                    <p class="text-lg text-white/80">
+                        {{ t('welcome.offers_empty') }}
+                    </p>
+                    <a :href="phoneLink" dir="ltr"
+                        class="mt-4 inline-flex items-center gap-2 font-semibold text-white hover:underline">
+                        {{ phoneNumber }}
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="bg-[hsl(205,64%,22%)] px-6 py-24 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="mb-12 max-w-2xl">
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                        {{ t('welcome.testimonials_title') }}
+                    </h2>
+                    <p class="mt-4 text-lg text-white/80">
+                        {{ t('welcome.testimonials_subtitle') }}
+                    </p>
+                </div>
+
+                <div class="relative -mx-6 overflow-hidden lg:-mx-8">
+                    <div class="pointer-events-none absolute inset-y-0 start-0 z-10 w-16" :class="startFadeClass" />
+                    <div class="pointer-events-none absolute inset-y-0 end-0 z-10 w-16" :class="endFadeClass" />
+
+                    <div class="flex w-max gap-4 py-2 will-change-transform" :class="scrollAnimationClass"
+                        :dir="direction">
+                        <div v-for="(comment, index) in duplicatedComments" :key="index"
+                            class="w-[22rem] shrink-0 rounded-xl bg-white p-4 shadow-sm">
+                            <div class="flex items-start gap-3">
+                                <img :src="comment.avatar" :alt="comment.name"
+                                    class="h-10 w-10 shrink-0 rounded-full border border-black/5 object-cover"
+                                    loading="lazy" />
+                                <div class="min-w-0 flex-1">
+                                    <div class="inline-block max-w-full rounded-2xl bg-[#f0f2f5] px-3.5 py-2">
+                                        <p class="text-sm font-bold text-[#050505]">
+                                            {{ comment.name }}
+                                        </p>
+                                        <p class="mt-0.5 text-sm leading-relaxed break-words text-[#050505]">
+                                            {{ comment.body }}
+                                        </p>
+                                    </div>
+                                    <div class="mt-1 flex items-center gap-2 px-1 text-xs font-bold text-[#65676b]">
+                                        <button type="button" class="hover:underline">
+                                            {{ t('welcome.testimonials_like') }}
+                                        </button>
+                                        <span>·</span>
+                                        <button type="button" class="hover:underline">
+                                            {{
+                                                t('welcome.testimonials_reply')
+                                            }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="px-6 py-24 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+                <div class="grid gap-12 lg:grid-cols-2">
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                            {{ t('welcome.contact_title') }}
+                        </h2>
+                        <p class="mt-4 text-lg text-white/80">
+                            {{ t('welcome.contact_subtitle') }}
+                        </p>
+
+                        <div class="mt-10">
+                            <h3 class="text-sm font-semibold tracking-wide text-white/70 uppercase">
+                                {{ t('welcome.contact_phone') }}
+                            </h3>
+                            <a :href="phoneLink" dir="ltr"
+                                class="mt-2 inline-flex items-center gap-3 text-3xl font-bold text-white transition-colors hover:text-white/80">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="h-7 w-7">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                                {{ phoneNumber }}
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl border border-white/10 bg-white p-8 shadow-sm">
+                        <h3 class="text-lg font-semibold text-[#1b1b18]">
+                            {{ t('welcome.contact_address') }}
+                        </h3>
+                        <ul class="mt-6 space-y-5">
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#184a6d]/10 text-[#184a6d]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="h-4 w-4">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </span>
+                                <span class="text-[#4a4a45]">
+                                    {{ t('welcome.office_algiers') }}
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#184a6d]/10 text-[#184a6d]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="h-4 w-4">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </span>
+                                <span class="text-[#4a4a45]">
+                                    {{ t('welcome.office_oran') }}
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#184a6d]/10 text-[#184a6d]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="h-4 w-4">
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </span>
+                                <span class="text-[#4a4a45]">
+                                    {{ t('welcome.office_bordj') }}
+                                </span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span
+                                    class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#184a6d]/10 text-[#184a6d]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="h-4 w-4">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg>
+                                </span>
+                                <span class="text-[#6b6b64]">
+                                    {{ t('welcome.office_setif') }}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div
-                    class="relative -mb-px aspect-[335/364] w-full shrink-0 overflow-hidden rounded-t-lg bg-[#fff2f2] lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1D0002]"
-                >
-                    <!-- Laravel Logo -->
-                    <svg
-                        class="w-full max-w-none translate-y-0 text-[#F53003] opacity-100 transition-all duration-750 dark:text-[#F61500] starting:opacity-0 motion-safe:starting:translate-y-6"
-                        viewBox="0 0 438 104"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M17.2036 -3H0V102.197H49.5189V86.7187H17.2036V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M110.256 41.6337C108.061 38.1275 104.945 35.3731 100.905 33.3681C96.8667 31.3647 92.8016 30.3618 88.7131 30.3618C83.4247 30.3618 78.5885 31.3389 74.201 33.2923C69.8111 35.2456 66.0474 37.928 62.9059 41.3333C59.7643 44.7401 57.3198 48.6726 55.5754 53.1293C53.8287 57.589 52.9572 62.274 52.9572 67.1813C52.9572 72.1925 53.8287 76.8995 55.5754 81.3069C57.3191 85.7173 59.7636 89.6241 62.9059 93.0293C66.0474 96.4361 69.8119 99.1155 74.201 101.069C78.5885 103.022 83.4247 103.999 88.7131 103.999C92.8016 103.999 96.8667 102.997 100.905 100.994C104.945 98.9911 108.061 96.2359 110.256 92.7282V102.195H126.563V32.1642H110.256V41.6337ZM108.76 75.7472C107.762 78.4531 106.366 80.8078 104.572 82.8112C102.776 84.8161 100.606 86.4183 98.0637 87.6206C95.5202 88.823 92.7004 89.4238 89.6103 89.4238C86.5178 89.4238 83.7252 88.823 81.2324 87.6206C78.7388 86.4183 76.5949 84.8161 74.7998 82.8112C73.004 80.8078 71.6319 78.4531 70.6856 75.7472C69.7356 73.0421 69.2644 70.1868 69.2644 67.1821C69.2644 64.1758 69.7356 61.3205 70.6856 58.6154C71.6319 55.9102 73.004 53.5571 74.7998 51.5522C76.5949 49.5495 78.738 47.9451 81.2324 46.7427C83.7252 45.5404 86.5178 44.9396 89.6103 44.9396C92.7012 44.9396 95.5202 45.5404 98.0637 46.7427C100.606 47.9451 102.776 49.5487 104.572 51.5522C106.367 53.5571 107.762 55.9102 108.76 58.6154C109.756 61.3205 110.256 64.1758 110.256 67.1821C110.256 70.1868 109.756 73.0421 108.76 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M242.805 41.6337C240.611 38.1275 237.494 35.3731 233.455 33.3681C229.416 31.3647 225.351 30.3618 221.262 30.3618C215.974 30.3618 211.138 31.3389 206.75 33.2923C202.36 35.2456 198.597 37.928 195.455 41.3333C192.314 44.7401 189.869 48.6726 188.125 53.1293C186.378 57.589 185.507 62.274 185.507 67.1813C185.507 72.1925 186.378 76.8995 188.125 81.3069C189.868 85.7173 192.313 89.6241 195.455 93.0293C198.597 96.4361 202.361 99.1155 206.75 101.069C211.138 103.022 215.974 103.999 221.262 103.999C225.351 103.999 229.416 102.997 233.455 100.994C237.494 98.9911 240.611 96.2359 242.805 92.7282V102.195H259.112V32.1642H242.805V41.6337ZM241.31 75.7472C240.312 78.4531 238.916 80.8078 237.122 82.8112C235.326 84.8161 233.156 86.4183 230.614 87.6206C228.07 88.823 225.251 89.4238 222.16 89.4238C219.068 89.4238 216.275 88.823 213.782 87.6206C211.289 86.4183 209.145 84.8161 207.35 82.8112C205.554 80.8078 204.182 78.4531 203.236 75.7472C202.286 73.0421 201.814 70.1868 201.814 67.1821C201.814 64.1758 202.286 61.3205 203.236 58.6154C204.182 55.9102 205.554 53.5571 207.35 51.5522C209.145 49.5495 211.288 47.9451 213.782 46.7427C216.275 45.5404 219.068 44.9396 222.16 44.9396C225.251 44.9396 228.07 45.5404 230.614 46.7427C233.156 47.9451 235.326 49.5487 237.122 51.5522C238.917 53.5571 240.312 55.9102 241.31 58.6154C242.306 61.3205 242.806 64.1758 242.806 67.1821C242.805 70.1868 242.305 73.0421 241.31 75.7472Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M438 -3H421.694V102.197H438V-3Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M139.43 102.197H155.735V48.2834H183.712V32.1665H139.43V102.197Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M324.49 32.1665L303.995 85.794L283.498 32.1665H266.983L293.748 102.197H314.242L341.006 32.1665H324.49Z"
-                            fill="currentColor"
-                        />
-                        <path
-                            d="M376.571 30.3656C356.603 30.3656 340.797 46.8497 340.797 67.1828C340.797 89.6597 356.094 104 378.661 104C391.29 104 399.354 99.1488 409.206 88.5848L398.189 80.0226C398.183 80.031 389.874 90.9895 377.468 90.9895C363.048 90.9895 356.977 79.3111 356.977 73.269H411.075C413.917 50.1328 398.775 30.3656 376.571 30.3656ZM357.02 61.0967C357.145 59.7487 359.023 43.3761 376.442 43.3761C393.861 43.3761 395.978 59.7464 396.099 61.0967H357.02Z"
-                            fill="currentColor"
-                        />
-                    </svg>
+            </div>
+        </section>
 
-                    <!-- 13 -->
-                    <svg
-                        class="relative -mt-[6.6rem] -ml-8 w-[438px] max-w-none [--stroke-color:#1B1B18] lg:ml-0 dark:[--stroke-color:#FF750F]"
-                        viewBox="0 0 440 392"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <g
-                            class="text-[#1B1B18] opacity-100 mix-blend-darken transition-all delay-300 duration-750 dark:text-black dark:mix-blend-normal starting:opacity-0"
-                        >
-                            <mask
-                                id="path-1-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="-0.328613"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="-0.328613"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                />
-                                <path
-                                    d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M234.936 400.8C204.136 400.8 178.936 392.4 159.336 375.6C140.136 358.8 130.536 337 130.536 310.2H200.736C200.736 318.2 203.736 324.8 209.736 330C215.736 335.2 223.736 337.8 233.736 337.8C243.336 337.8 251.136 335 257.136 329.4C263.536 323.8 266.736 316.6 266.736 307.8C266.736 299.8 263.936 293.2 258.336 288C252.736 282.8 245.536 280.2 236.736 280.2H199.536V218.4H236.736C243.536 218.4 249.336 216 254.136 211.2C258.936 206.4 261.336 200.4 261.336 193.2C261.336 184.8 258.736 178.2 253.536 173.4C248.336 168.6 241.736 166.2 233.736 166.2C226.536 166.2 220.336 168.4 215.136 172.8C210.336 177.2 207.936 182.8 207.936 189.6H141.336C141.336 164.8 150.136 144.6 167.736 129C185.336 113 207.936 105 235.536 105C263.136 105 285.536 112.2 302.736 126.6C320.336 141 329.136 160 329.136 183.6C329.136 200.8 324.536 214.8 315.336 225.6C306.136 236 294.336 243.2 279.936 247.2C297.136 252 310.736 260.2 320.736 271.8C331.136 283.4 336.336 298 336.336 315.6C336.336 340.4 326.936 360.8 308.136 376.8C289.336 392.8 264.936 400.8 234.936 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                            <path
-                                d="M26.8714 167.6H1.67139V105.2H94.6714V400.2H26.8714V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-1-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[26px]"
-                        >
-                            <mask
-                                id="path-2-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="25.3357"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="25.3357"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                />
-                                <path
-                                    d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M260.6 400.8C229.8 400.8 204.6 392.4 185 375.6C165.8 358.8 156.2 337 156.2 310.2H226.4C226.4 318.2 229.4 324.8 235.4 330C241.4 335.2 249.4 337.8 259.4 337.8C269 337.8 276.8 335 282.8 329.4C289.2 323.8 292.4 316.6 292.4 307.8C292.4 299.8 289.6 293.2 284 288C278.4 282.8 271.2 280.2 262.4 280.2H225.2V218.4H262.4C269.2 218.4 275 216 279.8 211.2C284.6 206.4 287 200.4 287 193.2C287 184.8 284.4 178.2 279.2 173.4C274 168.6 267.4 166.2 259.4 166.2C252.2 166.2 246 168.4 240.8 172.8C236 177.2 233.6 182.8 233.6 189.6H167C167 164.8 175.8 144.6 193.4 129C211 113 233.6 105 261.2 105C288.8 105 311.2 112.2 328.4 126.6C346 141 354.8 160 354.8 183.6C354.8 200.8 350.2 214.8 341 225.6C331.8 236 320 243.2 305.6 247.2C322.8 252 336.4 260.2 346.4 271.8C356.8 283.4 362 298 362 315.6C362 340.4 352.6 360.8 333.8 376.8C315 392.8 290.6 400.8 260.6 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                            <path
-                                d="M52.5357 167.6H27.3357V105.2H120.336V400.2H52.5357V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-2-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F8B803] opacity-100 mix-blend-color transition-all delay-400 duration-750 dark:text-[#391800] dark:mix-blend-hard-light starting:opacity-0 motion-safe:starting:-translate-x-[51px]"
-                        >
-                            <mask
-                                id="path-3-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="51"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="51"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                />
-                                <path
-                                    d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M286.264 400.8C255.464 400.8 230.264 392.4 210.664 375.6C191.464 358.8 181.864 337 181.864 310.2H252.064C252.064 318.2 255.064 324.8 261.064 330C267.064 335.2 275.064 337.8 285.064 337.8C294.664 337.8 302.464 335 308.464 329.4C314.864 323.8 318.064 316.6 318.064 307.8C318.064 299.8 315.264 293.2 309.664 288C304.064 282.8 296.864 280.2 288.064 280.2H250.864V218.4H288.064C294.864 218.4 300.664 216 305.464 211.2C310.264 206.4 312.664 200.4 312.664 193.2C312.664 184.8 310.064 178.2 304.864 173.4C299.664 168.6 293.064 166.2 285.064 166.2C277.864 166.2 271.664 168.4 266.464 172.8C261.664 177.2 259.264 182.8 259.264 189.6H192.664C192.664 164.8 201.464 144.6 219.064 129C236.664 113 259.264 105 286.864 105C314.464 105 336.864 112.2 354.064 126.6C371.664 141 380.464 160 380.464 183.6C380.464 200.8 375.864 214.8 366.664 225.6C357.464 236 345.664 243.2 331.264 247.2C348.464 252 362.064 260.2 372.064 271.8C382.464 283.4 387.664 298 387.664 315.6C387.664 340.4 378.264 360.8 359.464 376.8C340.664 392.8 316.264 400.8 286.264 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                            <path
-                                d="M78.2 167.6H53V105.2H146V400.2H78.2V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-3-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-multiply transition-all delay-400 duration-750 dark:text-[#733000] dark:mix-blend-normal starting:opacity-0 motion-safe:starting:-translate-x-[78px]"
-                        >
-                            <mask
-                                id="path-4-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="76.6643"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="76.6643"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                />
-                                <path
-                                    d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M311.929 400.8C281.129 400.8 255.929 392.4 236.329 375.6C217.129 358.8 207.529 337 207.529 310.2H277.729C277.729 318.2 280.729 324.8 286.729 330C292.729 335.2 300.729 337.8 310.729 337.8C320.329 337.8 328.129 335 334.129 329.4C340.529 323.8 343.729 316.6 343.729 307.8C343.729 299.8 340.929 293.2 335.329 288C329.729 282.8 322.529 280.2 313.729 280.2H276.529V218.4H313.729C320.529 218.4 326.329 216 331.129 211.2C335.929 206.4 338.329 200.4 338.329 193.2C338.329 184.8 335.729 178.2 330.529 173.4C325.329 168.6 318.729 166.2 310.729 166.2C303.529 166.2 297.329 168.4 292.129 172.8C287.329 177.2 284.929 182.8 284.929 189.6H218.329C218.329 164.8 227.129 144.6 244.729 129C262.329 113 284.929 105 312.529 105C340.129 105 362.529 112.2 379.729 126.6C397.329 141 406.129 160 406.129 183.6C406.129 200.8 401.529 214.8 392.329 225.6C383.129 236 371.329 243.2 356.929 247.2C374.129 252 387.729 260.2 397.729 271.8C408.129 283.4 413.329 298 413.329 315.6C413.329 340.4 403.929 360.8 385.129 376.8C366.329 392.8 341.929 400.8 311.929 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                            <path
-                                d="M103.864 167.6H78.6643V105.2H171.664V400.2H103.864V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-4-mask)"
-                            />
-                        </g>
-
-                        <g
-                            class="text-[#F3BEC7] opacity-100 mix-blend-hard-light transition-all delay-400 duration-750 dark:text-[#4B0600] starting:opacity-0 motion-safe:starting:-translate-x-[102px]"
-                        >
-                            <mask
-                                id="path-5-mask"
-                                maskUnits="userSpaceOnUse"
-                                x="102.329"
-                                y="103"
-                                width="338"
-                                height="299"
-                                fill="black"
-                            >
-                                <rect
-                                    fill="white"
-                                    x="102.329"
-                                    y="103"
-                                    width="338"
-                                    height="299"
-                                />
-                                <path
-                                    d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                />
-                                <path
-                                    d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                />
-                            </mask>
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                fill="currentColor"
-                            />
-                            <path
-                                d="M337.593 400.8C306.793 400.8 281.593 392.4 261.993 375.6C242.793 358.8 233.193 337 233.193 310.2H303.393C303.393 318.2 306.393 324.8 312.393 330C318.393 335.2 326.393 337.8 336.393 337.8C345.993 337.8 353.793 335 359.793 329.4C366.193 323.8 369.393 316.6 369.393 307.8C369.393 299.8 366.593 293.2 360.993 288C355.393 282.8 348.193 280.2 339.393 280.2H302.193V218.4H339.393C346.193 218.4 351.993 216 356.793 211.2C361.593 206.4 363.993 200.4 363.993 193.2C363.993 184.8 361.393 178.2 356.193 173.4C350.993 168.6 344.393 166.2 336.393 166.2C329.193 166.2 322.993 168.4 317.793 172.8C312.993 177.2 310.593 182.8 310.593 189.6H243.993C243.993 164.8 252.793 144.6 270.393 129C287.993 113 310.593 105 338.193 105C365.793 105 388.193 112.2 405.393 126.6C422.993 141 431.793 160 431.793 183.6C431.793 200.8 427.193 214.8 417.993 225.6C408.793 236 396.993 243.2 382.593 247.2C399.793 252 413.393 260.2 423.393 271.8C433.793 283.4 438.993 298 438.993 315.6C438.993 340.4 429.593 360.8 410.793 376.8C391.993 392.8 367.593 400.8 337.593 400.8Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                            <path
-                                d="M129.529 167.6H104.329V105.2H197.329V400.2H129.529V167.6Z"
-                                stroke="var(--stroke-color)"
-                                stroke-width="2.4"
-                                mask="url(#path-5-mask)"
-                            />
-                        </g>
-                    </svg>
-                    <div
-                        class="absolute inset-0 rounded-t-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-t-none lg:rounded-r-lg dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
-                    ></div>
+        <!-- Footer -->
+        <footer class="border-t border-white/10 bg-[hsl(205,64%,22%)] px-6 py-10 lg:px-8">
+            <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
+                <div class="flex items-center gap-3">
+                    <AppLogoIcon class="h-8 w-8 rounded-md object-cover" />
+                    <span class="text-sm font-semibold text-white">
+                        Alfia
+                    </span>
                 </div>
-            </main>
-        </div>
-        <div class="hidden h-14.5 lg:block"></div>
+                <p class="text-center text-sm text-white/70">
+                    © {{ new Date().getFullYear() }} Alfia.
+                    {{ t('welcome.footer_rights') }}
+                </p>
+                <p class="text-sm text-white/70">
+                    {{ t('welcome.footer_tagline') }}
+                </p>
+            </div>
+        </footer>
     </div>
 </template>

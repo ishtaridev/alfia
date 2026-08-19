@@ -13,11 +13,14 @@
         "yes": "نعم",
         "no": "لا",
         "or": "أو",
-        "of": "من"
+        "of": "من",
+        "previous": "السابق",
+        "next": "التالي"
     },
     "navigation": {
         "dashboard": "لوحة التحكم",
         "offers": "العروض",
+        "users": "المستخدمين",
         "settings": "الإعدادات",
         "logout": "تسجيل الخروج",
         "platform": "المنصة",
@@ -83,6 +86,10 @@
             "step_variants": "الأنواع والأسعار",
             "step_images": "الصور",
             "step_review": "المراجعة",
+            "step_subtitle_details": "أدخل المعلومات الأساسية لهذا العرض",
+            "step_subtitle_variants": "أضف تواريخ السفر والمطارات والأسعار لكل نوع",
+            "step_subtitle_images": "ارفع صورًا لتوضيح هذا العرض",
+            "step_subtitle_review": "راجع جميع التفاصيل قبل الإنشاء",
             "offer_title": "العنوان",
             "title_placeholder": "مثال: رحلة صيفية إلى إسطنبول",
             "description_label": "الوصف",
@@ -95,15 +102,16 @@
             "no_date": "بدون تاريخ",
             "no_airport": "بدون مطار",
             "collectif": "جماعي:",
-            "room_of_4": "غرفة من 4:",
-            "room_of_3": "غرفة من 3:",
-            "room_of_2": "غرفة من 2:",
+            "room_of_4": "غرفة رباعية:",
+            "room_of_3": "غرفة ثلاثية:",
+            "room_of_2": "غرفة ثنائية:",
             "feeding": "الإطعام:",
             "images_count": "الصور ({count})",
             "images_will_be_uploaded": "سيتم رفع {count} صورة(صور).",
             "previous": "السابق",
             "next": "التالي",
-            "submit": "إنشاء العرض"
+            "submit": "إنشاء العرض",
+            "step_counter": "الخطوة {current} من {total}"
         },
         "edit": {
             "title": "تعديل العرض",
@@ -120,27 +128,63 @@
             "type": "النوع",
             "price": "السعر",
             "collectif_room": "غرفة جماعية",
-            "room_of_four": "غرفة من أربعة",
-            "room_of_three": "غرفة من ثلاثة",
-            "room_of_two": "غرفة من اثنين",
+            "room_of_four": "غرفة رباعية",
+            "room_of_three": "غرفة ثلاثية",
+            "room_of_two": "غرفة ثنائية",
             "feeding": "الإطعام",
             "delete_title": "حذف العرض",
-            "delete_confirmation": "هل أنت متأكد أنك تريد حذف هذا العرض؟ لا يمكن التراجع عن هذا الإجراء."
+            "delete_confirmation": "هل أنت متأكد أنك تريد حذف هذا العرض؟ لا يمكن التراجع عن هذا الإجراء.",
+            "offer_details": "تفاصيل العرض",
+            "pricing_information": "معلومات الأسعار",
+            "no_description": "لم يتم تقديم وصف.",
+            "no_variants": "لم تتم إضافة أنواع بعد.",
+            "no_images": "لا توجد صور إضافية."
         }
+    },
+    "public_reserve": {
+        "page_title": "احجز",
+        "variant_details": "تفاصيل النوع",
+        "variant": "تاريخ السفر",
+        "select_variant": "اختر تاريخ السفر",
+        "form_title": "الحجز",
+        "form_description": "أدخل بياناتك لحجز هذا العرض",
+        "customer_placeholder": "مثال: محمد أحمد",
+        "phone_placeholder": "مثال: 0555123456",
+        "select_wilaya": "اختر الولاية",
+        "room_type_placeholder": "اختر نوع الغرفة",
+        "room_type_label": "اختر إقامتك المفضلة",
+        "trip_details": "تفاصيل الرحلة",
+        "your_details": "بياناتك",
+        "pricing_breakdown": "تفاصيل التسعير",
+        "per_person": "للشخص",
+        "total": "المجموع",
+        "no_variants_title": "لا توجد مواعيد سفر متاحة",
+        "no_variants_description": "لا يحتوي هذا العرض على أي مواعيد سفر متاحة حالياً. يرجى التحقق لاحقاً.",
+        "trust_secure": "آمن",
+        "trust_instant": "فوري",
+        "trust_support": "دعم",
+        "submit": "احجز الآن",
+        "success_title": "تم تأكيد الحجز",
+        "success_heading": "شكراً لحجزك!",
+        "success_description": "لقد استلمنا طلب حجزك وسنتواصل معك قريباً للتأكيد.",
+        "reservation_summary": "ملخص الحجز",
+        "back_to_offer": "العودة إلى العرض"
     },
     "offer_components": {
         "no_image": "بدون صورة",
         "variants_count": "{count} أنواع",
         "next": "التالي:",
         "view": "عرض",
+        "copy_url": "نسخ الرابط",
+        "copied": "تم النسخ!",
         "variant_number": "النوع {number}",
         "travel_date": "تاريخ السفر",
         "airport": "المطار",
         "airport_placeholder": "مثال: الجزائر",
         "collectif_room": "غرفة جماعية",
-        "room_of_four": "غرفة من أربعة",
-        "room_of_three": "غرفة من ثلاثة",
-        "room_of_two": "غرفة من اثنين",
+        "room_of_four": "غرفة رباعية",
+        "room_of_three": "غرفة ثلاثية",
+        "room_of_two": "غرفة ثنائية",
         "feeding": "الإطعام",
         "upload_prompt": "انقر للرفع أو اسحب وأفلت",
         "upload_formats": "PNG, JPG, WEBP (حد أقصى 5 ميغابايت)",
@@ -187,14 +231,79 @@
         "something_went_wrong": "حدث خطأ ما."
     },
     "welcome": {
-        "lets_get_started": "لنبدأ",
-        "ecosystem_description": "لارافيل لديه نظام بيئي غني بشكل لا يصدق.",
-        "suggest_starting": "نقترح أن تبدأ بما يلي.",
-        "read_the": "اقرأ",
-        "documentation": "التوثيق",
-        "watch_video": "شاهد دروس الفيديو على",
-        "laracasts": "Laracasts",
-        "deploy_now": "نشر الآن"
+        "meta_title": "الألفية — خدمات العمرة والسياحة منذ عام 2000",
+        "nav_offers": "العروض",
+        "nav_contact": "اتصل بنا",
+        "nav_login": "تسجيل الدخول",
+        "nav_dashboard": "لوحة التحكم",
+        "language_label": "اللغة",
+        "hero_title": "رحلتك إلى الحرمين تبدأ بالثقة",
+        "hero_subtitle": "تأسست الألفية عام 2000 لتقدم خدمات العمرة والسياحة للجزائريين بعناية وإتقان.",
+        "cta_offers": "اكتشف العروض",
+        "cta_call": "اتصل الآن",
+        "cta_whatsapp": "تواصل واتساب",
+        "trust_since": "نخدم ضيوف الرحمن منذ",
+        "trust_offices": "مكاتب عبر الجزائر",
+        "trust_support": "فريق دعم جزائري",
+        "offers_title": "عروض السفر المختارة",
+        "offers_subtitle": "رحلات بتواريخ ومطارات وأسعار واضحة. احجز دون حساب.",
+        "offers_from": "ابتداءً من",
+        "offers_next_departure": "أقبل مغادرة",
+        "offers_view": "عرض التفاصيل",
+        "offers_empty": "يتم حالياً إعداد عروض جديدة. اتصل بنا للحجز المبكر.",
+        "testimonials_title": "ماذا يقول معتميرونا",
+        "testimonials_subtitle": "تعليقات حقيقية من معتميرينا ومسافرينا.",
+        "testimonials_placeholder_note": "نموذج — استبدله بتقييم حقيقي",
+        "testimonials_like": "إعجاب",
+        "testimonials_reply": "رد",
+        "contact_title": "زورونا أو اتصلوا بنا",
+        "contact_subtitle": "فريقنا جاهز لمساعدتكم في اختيار الباقة المناسبة.",
+        "contact_phone": "الهاتف",
+        "contact_address": "العناوين",
+        "office_algiers": "الدار البيضاء، الجزائر العاصمة",
+        "office_oran": "حي الياسمين — نهج الأسود، وهران",
+        "office_bordj": "شارع ربيع زواوي، برج بوعريريج",
+        "office_setif": "قريباً",
+        "footer_rights": "جميع الحقوق محفوظة.",
+        "footer_tagline": "خدمات العمرة والسياحة منذ عام 2000."
+    },
+    "users": {
+        "index": {
+            "title": "المستخدمين",
+            "description": "إدارة المستخدمين المسؤولين",
+            "create_button": "إنشاء مستخدم",
+            "empty_title": "لا يوجد مستخدمين بعد",
+            "empty_description": "أنشئ أول مستخدم مسؤول للبدء.",
+            "delete_title": "حذف المستخدم",
+            "delete_confirmation": "هل أنت متأكد أنك تريد حذف \"{name}\"؟ لا يمكن التراجع عن هذا الإجراء."
+        },
+        "create": {
+            "title": "إنشاء مستخدم",
+            "description": "إنشاء مستخدم مسؤول جديد",
+            "form_title": "مستخدم جديد",
+            "form_description": "أدخل التفاصيل لإنشاء مستخدم مسؤول جديد"
+        },
+        "edit": {
+            "title": "تعديل المستخدم",
+            "description": "جارٍ التعديل: {name}",
+            "form_title": "تعديل المستخدم",
+            "form_description": "تحديث تفاصيل {name}"
+        },
+        "fields": {
+            "name": "الاسم",
+            "name_placeholder": "الاسم الكامل",
+            "email": "البريد الإلكتروني",
+            "email_placeholder": "email{'@'}example.com",
+            "password": "كلمة المرور",
+            "password_optional": "اتركه فارغًا للحفاظ على كلمة المرور الحالية",
+            "confirm_password": "تأكيد كلمة المرور",
+            "role": "الدور",
+            "role_placeholder": "اختر دورًا"
+        },
+        "role": {
+            "admin": "مسؤول",
+            "superadmin": "مسؤول أعلى"
+        }
     },
     "editor": {
         "placeholder": "اكتب شيئًا...",
@@ -205,6 +314,125 @@
         "show_password": "إظهار كلمة المرور",
         "toggle_sidebar": "تبديل الشريط الجانبي",
         "navigation_menu": "قائمة التنقل"
+    },
+    "reservations": {
+        "index": {
+            "title": "الحجوزات",
+            "description": "إدارة الحجوزات لهذا النوع",
+            "create_button": "إنشاء حجز",
+            "empty_title": "لا توجد حجوزات بعد",
+            "empty_description": "أنشئ حجزك الأول للبدء.",
+            "delete_title": "حذف الحجز",
+            "delete_confirmation": "هل أنت متأكد أنك تريد حذف حجز \"{customer}\"؟ لا يمكن التراجع عن هذا الإجراء.",
+            "variant_details": "تفاصيل النوع",
+            "travel_date": "تاريخ السفر",
+            "airport": "المطار",
+            "collectif_room": "جماعي",
+            "room_of_four": "غرفة رباعية",
+            "room_of_three": "غرفة ثلاثية",
+            "room_of_two": "غرفة ثنائية",
+            "feeding": "الإطعام",
+            "reservations_count": "{count} حجز(حجوزات)",
+            "customer": "المعتمر الكريم",
+            "phone": "الهاتف",
+            "travellers": "المسافرون",
+            "wilaya": "الولاية",
+            "room_type": "نوع الغرفة",
+            "status": "الحالة",
+            "price": "السعر",
+            "actions": "الإجراءات",
+            "include_feeding": "الإطعام مشمول",
+            "stats": {
+                "total_reservations": "إجمالي الحجوزات",
+                "total_travellers": "إجمالي المسافرين",
+                "total_revenue": "إجمالي الإيرادات",
+                "confirmed": "مؤكد",
+                "pending": "قيد الانتظار",
+                "cancelled": "ملغي"
+            },
+            "filters": {
+                "all": "الكل",
+                "confirmed": "مؤكد",
+                "pending": "قيد الانتظار",
+                "cancelled": "ملغي"
+            },
+            "view": "عرض",
+            "view_details": "عرض التفاصيل",
+            "reservation_details": "تفاصيل الحجز",
+            "pricing_breakdown": "تفاصيل التسعير",
+            "room_price": "سعر الغرفة",
+            "feeding_price": "الإطعام",
+            "per_person": "للشخص",
+            "total": "المجموع",
+            "close_view": "إغلاق"
+        },
+        "create": {
+            "title": "إنشاء حجز",
+            "form_title": "حجز جديد",
+            "form_description": "أدخل التفاصيل لإنشاء حجز جديد",
+            "customer_placeholder": "مثال: محمد أحمد",
+            "phone_placeholder": "مثال: 0555123456",
+            "select_wilaya": "اختر الولاية",
+            "room_type_placeholder": "اختر نوع الغرفة",
+            "status_placeholder": "اختر الحالة"
+        },
+        "edit": {
+            "title": "تعديل الحجز",
+            "form_title": "تعديل الحجز",
+            "form_description": "جارٍ تعديل حجز {customer}"
+        },
+        "room_type": {
+            "collectif": "جماعي",
+            "room_of_four": "غرفة رباعية",
+            "room_of_three": "غرفة ثلاثية",
+            "room_of_two": "غرفة ثنائية"
+        },
+        "status": {
+            "pending": "قيد الانتظار",
+            "confirmed": "مؤكد",
+            "cancelled": "ملغي"
+        }
+    },
+    "dashboard": {
+        "title": "لوحة التحكم",
+        "stats": {
+            "total_offers": "إجمالي العروض",
+            "total_reservations": "إجمالي الحجوزات",
+            "total_revenue": "إجمالي الإيرادات",
+            "total_users": "إجمالي المستخدمين",
+            "total_travellers": "إجمالي المسافرين",
+            "revenue_suffix": "د.ج"
+        },
+        "charts": {
+            "monthly_reservations": {
+                "title": "الحجوزات الشهرية",
+                "label": "الحجوزات"
+            },
+            "reservation_status": {
+                "title": "حالة الحجز"
+            },
+            "revenue_trend": {
+                "title": "اتجاه الإيرادات",
+                "label": "الإيرادات (د.ج)"
+            }
+        },
+        "top_offers": {
+            "title": "أفضل العروض",
+            "reservations_count": "{count} حجز(حجوزات)",
+            "empty": "لا توجد حجوزات بعد"
+        },
+        "recent_reservations": {
+            "title": "أحدث الحجوزات",
+            "empty": "لا توجد حجوزات حديثة",
+            "columns": {
+                "customer": "المعتمر الكريم",
+                "offer": "العرض",
+                "travellers": "المسافرون",
+                "status": "الحالة",
+                "price": "السعر",
+                "date": "التاريخ"
+            }
+        }
     },
     "language_switcher": {
         "label": "اللغة",

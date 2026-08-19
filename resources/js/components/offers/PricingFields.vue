@@ -27,60 +27,59 @@ const updateField = (field: keyof Pricing, value: string) => {
 </script>
 
 <template>
-    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-        <div class="space-y-1">
-            <Label class="text-xs text-muted-foreground">{{ t('offer_components.collectif_room') }}</Label>
-            <Input
-                type="number"
-                min="0"
-                placeholder="0"
-                :model-value="pricing.collectif_room"
-                @update:model-value="(v) => updateField('collectif_room', v as string)"
-            />
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div class="space-y-1.5">
+            <Label class="text-sm text-muted-foreground">{{ t('offer_components.collectif_room') }}</Label>
+            <div class="relative">
+                <Input type="number" min="0" placeholder="0" class="pe-12 tabular-nums"
+                    :model-value="pricing.collectif_room"
+                    @update:model-value="(v) => updateField('collectif_room', v as string)" />
+                <span
+                    class="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">DZD</span>
+            </div>
         </div>
 
-        <div class="space-y-1">
-            <Label class="text-xs text-muted-foreground">{{ t('offer_components.room_of_four') }}</Label>
-            <Input
-                type="number"
-                min="0"
-                placeholder="0"
-                :model-value="pricing.room_of_four"
-                @update:model-value="(v) => updateField('room_of_four', v as string)"
-            />
+        <div class="space-y-1.5">
+            <Label class="text-sm text-muted-foreground">{{ t('offer_components.room_of_four') }}</Label>
+            <div class="relative">
+                <Input type="number" min="0" placeholder="0" class="pe-12 tabular-nums"
+                    :model-value="pricing.room_of_four"
+                    @update:model-value="(v) => updateField('room_of_four', v as string)" />
+                <span
+                    class="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">DZD</span>
+            </div>
         </div>
 
-        <div class="space-y-1">
-            <Label class="text-xs text-muted-foreground">{{ t('offer_components.room_of_three') }}</Label>
-            <Input
-                type="number"
-                min="0"
-                placeholder="0"
-                :model-value="pricing.room_of_three"
-                @update:model-value="(v) => updateField('room_of_three', v as string)"
-            />
+        <div class="space-y-1.5">
+            <Label class="text-sm text-muted-foreground">{{ t('offer_components.room_of_three') }}</Label>
+            <div class="relative">
+                <Input type="number" min="0" placeholder="0" class="pe-12 tabular-nums"
+                    :model-value="pricing.room_of_three"
+                    @update:model-value="(v) => updateField('room_of_three', v as string)" />
+                <span
+                    class="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">DZD</span>
+            </div>
         </div>
 
-        <div class="space-y-1">
-            <Label class="text-xs text-muted-foreground">{{ t('offer_components.room_of_two') }}</Label>
-            <Input
-                type="number"
-                min="0"
-                placeholder="0"
-                :model-value="pricing.room_of_two"
-                @update:model-value="(v) => updateField('room_of_two', v as string)"
-            />
+        <div class="space-y-1.5">
+            <Label class="text-sm text-muted-foreground">{{ t('offer_components.room_of_two') }}</Label>
+            <div class="relative">
+                <Input type="number" min="0" placeholder="0" class="pe-12 tabular-nums"
+                    :model-value="pricing.room_of_two"
+                    @update:model-value="(v) => updateField('room_of_two', v as string)" />
+                <span
+                    class="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">DZD</span>
+            </div>
         </div>
 
-        <div class="space-y-1">
-            <Label class="text-xs text-muted-foreground">{{ t('offer_components.feeding') }}</Label>
-            <Input
-                type="number"
-                min="0"
-                placeholder="0"
-                :model-value="pricing.feeding"
-                @update:model-value="(v) => updateField('feeding', v as string)"
-            />
+        <div class="space-y-1.5">
+            <Label class="text-sm text-muted-foreground">{{ t('offer_components.feeding') }}</Label>
+            <div class="relative">
+                <Input type="number" min="0" placeholder="0" class="pe-12 tabular-nums" :model-value="pricing.feeding"
+                    @update:model-value="(v) => updateField('feeding', v as string)" />
+                <span
+                    class="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">DZD</span>
+            </div>
         </div>
     </div>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { X } from '@lucide/vue';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useLocale } from '@/composables/useLocale';
@@ -43,9 +44,9 @@ const updateField = (field: keyof Variant, value: string) => {
 </script>
 
 <template>
-    <div class="rounded-lg border border-border p-4">
-        <div class="mb-4 flex items-center justify-between">
-            <h4 class="text-sm font-medium text-muted-foreground">
+    <Card class="transition-shadow duration-200 hover:shadow-md">
+        <CardHeader class="flex flex-row items-center justify-between space-y-0 pb-4">
+            <h4 class="text-sm font-semibold text-card-foreground">
                 {{ t('offer_components.variant_number', { number: index + 1 }) }}
             </h4>
             <Button
@@ -58,36 +59,37 @@ const updateField = (field: keyof Variant, value: string) => {
             >
                 <X class="h-4 w-4" />
             </Button>
-        </div>
+        </CardHeader>
+        <CardContent class="space-y-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="space-y-2">
+                    <Label :for="`travel_date_${index}`">{{ t('offer_components.travel_date') }}</Label>
+                    <Input
+                        :id="`travel_date_${index}`"
+                        type="date"
+                        :model-value="variant.travel_date"
+                        @update:model-value="(v) => updateField('travel_date', v as string)"
+                    />
+                </div>
 
-        <div class="grid gap-4 sm:grid-cols-2">
-            <div class="space-y-2">
-                <Label :for="`travel_date_${index}`">{{ t('offer_components.travel_date') }}</Label>
-                <Input
-                    :id="`travel_date_${index}`"
-                    type="date"
-                    :model-value="variant.travel_date"
-                    @update:model-value="(v) => updateField('travel_date', v as string)"
-                />
+                <div class="space-y-2">
+                    <Label :for="`airport_${index}`">{{ t('offer_components.airport') }}</Label>
+                    <Input
+                        :id="`airport_${index}`"
+                        type="text"
+                        :placeholder="t('offer_components.airport_placeholder')"
+                        :model-value="variant.airport"
+                        @update:model-value="(v) => updateField('airport', v as string)"
+                    />
+                </div>
             </div>
 
-            <div class="space-y-2">
-                <Label :for="`airport_${index}`">{{ t('offer_components.airport') }}</Label>
-                <Input
-                    :id="`airport_${index}`"
-                    type="text"
-                    :placeholder="t('offer_components.airport_placeholder')"
-                    :model-value="variant.airport"
-                    @update:model-value="(v) => updateField('airport', v as string)"
+            <div class="rounded-lg bg-muted/50 p-3">
+                <PricingFields
+                    :pricing="variant.pricing"
+                    @update="(data) => emit('updatePricing', index, data)"
                 />
             </div>
-        </div>
-
-        <div class="mt-4">
-            <PricingFields
-                :pricing="variant.pricing"
-                @update="(data) => emit('updatePricing', index, data)"
-            />
-        </div>
-    </div>
+        </CardContent>
+    </Card>
 </template>
