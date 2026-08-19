@@ -4,11 +4,11 @@ namespace App\Notifications;
 
 use App\Models\Reservation;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class ReservationCreated extends Notification implements ShouldQueue
+class ReservationCreated extends Notification implements ShouldBroadcastNow
 {
     use Queueable;
 
