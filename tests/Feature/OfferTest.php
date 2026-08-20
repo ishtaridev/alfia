@@ -254,7 +254,7 @@ test('admin uploaded offer images are converted to webp', function () {
         $this->markTestSkipped('No image extension available.');
     }
 
-    Storage::fake('public');
+    Storage::fake('s3');
 
     $user = User::factory()->admin()->create();
     $this->actingAs($user);
@@ -288,6 +288,6 @@ test('admin uploaded offer images are converted to webp', function () {
     $this->assertCount(1, $offer->images);
 
     $image = $offer->images->first();
-    Storage::disk('public')->assertExists($image->path);
+    Storage::disk('s3')->assertExists($image->path);
     $this->assertStringEndsWith('.webp', $image->path);
 });

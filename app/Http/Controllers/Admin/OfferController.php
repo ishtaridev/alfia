@@ -141,7 +141,7 @@ class OfferController extends Controller
                 OfferImage::whereIn('id', $request->deleted_image_ids)
                     ->where('offer_id', $offer->id)
                     ->each(function (OfferImage $image) {
-                        Storage::disk('public')->delete($image->path);
+                        Storage::disk('s3')->delete($image->path);
                         $image->delete();
                     });
             }
@@ -162,7 +162,7 @@ class OfferController extends Controller
 
         DB::transaction(function () use ($offer) {
             $offer->images()->each(function (OfferImage $image) {
-                Storage::disk('public')->delete($image->path);
+                Storage::disk('s3')->delete($image->path);
             });
 
             $offer->delete();
@@ -178,7 +178,7 @@ class OfferController extends Controller
         foreach ($files as $index => $file) {
             $path = Image::fromUpload($file)
                 ->toWebp()
-                ->store('offers/'.$offer->id, 'public');
+                ->storePublicly('offers/'.$offer->id, 's3');
             $offer->images()->create([
                 'path' => $path,
                 'order' => $maxOrder + $index + 1,

@@ -20,7 +20,7 @@ class OfferImageController extends Controller
             abort(404);
         }
 
-        Storage::disk('public')->delete($image->path);
+        Storage::disk('s3')->delete($image->path);
         $image->delete();
 
         return back();
