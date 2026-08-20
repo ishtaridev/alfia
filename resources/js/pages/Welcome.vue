@@ -4,6 +4,7 @@ import { computed } from 'vue';
 import { dashboard, home, login } from '@/routes';
 import offers from '@/routes/offers';
 import AppLogoIcon from '@/components/AppLogoIcon.vue';
+import GoogleTagManager from '@/components/GoogleTagManager.vue';
 import { useLocale } from '@/composables/useLocale';
 
 type OfferImage = { url: string };
@@ -159,6 +160,8 @@ const endFadeClass = computed(() =>
     <Head :title="t('welcome.meta_title')">
         <meta name="description" :content="t('welcome.hero_subtitle')" />
     </Head>
+
+    <GoogleTagManager />
 
     <div class="min-h-screen bg-background text-foreground antialiased selection:bg-white selection:text-[#184a6d]"
         :dir="direction">

@@ -4,6 +4,8 @@ use App\Models\Offer;
 use App\Models\OfferPricing;
 use App\Models\OfferVariant;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 test('guests are redirected to login', function () {
     $response = $this->get(route('offers.index'));
@@ -245,4 +247,47 @@ test('future scope returns only future date variants', function () {
 
     $this->assertCount(1, $futureVariants);
     $this->assertTrue($futureVariants->first()->id === $futureVariant->id);
+});
+
+test('admin uploaded offer images are converted to webp', function () {
+    if (! extension_loaded('gd') && ! extension_loaded('imagick')) {
+        $this->markTestSkipped('No image extension available.');
+    }
+
+    Storage::fake('public');
+
+    $user = User::factory()->admin()->create();
+    $this->actingAs($user);
+
+    $offerData = [
+        'title' => 'Offer With Image',
+        'description' => '<p>An offer</p>',
+        'variants' => [
+            [
+                'travel_date' => now()->addWeek()->format('Y-m-d'),
+                'airport' => 'Algiers',
+                'pricing' => [
+                    'collectif_room' => 50000,
+                    'room_of_four' => 60000,
+                    'room_of_three' => 70000,
+                    'room_of_two' => 80000,
+                    'feeding' => 10000,
+                ],
+            ],
+        ],
+        'images' => [
+            UploadedFile::fake()->image('offer-photo.jpg', 800, 600),
+        ],
+    ];
+
+    $response = $this->postJson(route('offers.store'), $offerData);
+    $response->assertRedirect();
+
+    $offer = Offer::where('title', 'Offer With Image')->first();
+    $this->assertNotNull($offer);
+    $this->assertCount(1, $offer->images);
+
+    $image = $offer->images->first();
+    Storage::disk('public')->assertExists($image->path);
+    $this->assertStringEndsWith('.webp', $image->path);
 });

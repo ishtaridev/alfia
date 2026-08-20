@@ -11,6 +11,7 @@ use App\Models\OfferVariant;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -175,7 +176,9 @@ class OfferController extends Controller
         $maxOrder = $offer->images()->max('order') ?? 0;
 
         foreach ($files as $index => $file) {
-            $path = $file->store('offers/'.$offer->id, 'public');
+            $path = Image::fromUpload($file)
+                ->toWebp()
+                ->store('offers/'.$offer->id, 'public');
             $offer->images()->create([
                 'path' => $path,
                 'order' => $maxOrder + $index + 1,

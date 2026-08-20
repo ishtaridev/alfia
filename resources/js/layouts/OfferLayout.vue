@@ -2,6 +2,7 @@
 import { Head, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import { useLocale } from '@/composables/useLocale';
+import GoogleTagManager from '@/components/GoogleTagManager.vue';
 import Lightbox from '@/components/ui/lightbox/Lightbox.vue';
 
 const { t } = useLocale();
@@ -36,6 +37,8 @@ const openLightbox = (index: number) => {
 <template>
 
     <Head :title="offer?.title ?? t('public_reserve.page_title')" />
+
+    <GoogleTagManager />
 
     <div class="flex min-h-screen flex-col bg-background">
         <!-- Header / Logo -->
