@@ -26,7 +26,7 @@ class DashboardController extends Controller
             ->toArray();
 
         $rawMonthlyReservations = Reservation::select(
-            DB::raw("strftime('%Y-%m', created_at) as month"),
+            DB::raw("DATE_FORMAT(created_at, '%Y-%m') as month"),
             DB::raw('count(*) as count')
         )
             ->groupBy('month')

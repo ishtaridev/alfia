@@ -16,11 +16,11 @@ return new class extends Migration
             $table->foreignId('variant_id')->constrained('offer_variants')->onDelete('cascade');
             $table->string('customer');
             $table->string('phone');
-            $table->integer('travellers_number');
+            $table->unsignedInteger('travellers_number');
             $table->string('wilaya');
             $table->string('status');
             $table->boolean('include_feeding')->default(false);
-            $table->unsignedBigInteger('total_price');
+            $table->unsignedInteger('total_price');
             $table->timestamps();
         });
     }

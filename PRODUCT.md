@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Laravel 13.x (PHP 8.4), Inertia.js v3, Vue 3, Tailwind CSS v4, SQLite, Vite, Laravel Fortify, Laravel Wayfinder.
+Laravel 13.x (PHP 8.4), Inertia.js v3, Vue 3, Tailwind CSS v4, MySQL, Vite, Laravel Fortify, Laravel Wayfinder.
 
 ## Users
 
