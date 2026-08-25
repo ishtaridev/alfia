@@ -263,7 +263,7 @@ const submit = () => {
         </Card>
 
         <!-- Booking Layout -->
-        <div v-else class="grid gap-6 lg:grid-cols-12 lg:gap-8">
+        <div v-else class="flex flex-col gap-6 md:flex-row">
             <!-- Main Form -->
             <div class="order-2 lg:order-1 lg:col-span-7">
                 <Card class="overflow-hidden border-0 shadow-xl">
@@ -290,7 +290,7 @@ const submit = () => {
                                 <div class="space-y-2">
                                     <Label for="variant" class="text-sm font-medium">{{
                                         t('public_reserve.variant')
-                                    }}</Label>
+                                        }}</Label>
                                     <Select v-model="selectedVariantId">
                                         <SelectTrigger class="h-12 w-full rounded-xl border-border bg-card px-4">
                                             <SelectValue :placeholder="t(
@@ -367,8 +367,8 @@ const submit = () => {
                                     <button v-for="option in roomOptions" :key="option.value" type="button"
                                         class="group relative flex flex-col items-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
                                         :class="room_type === option.value
-                                                ? 'border-primary bg-primary/5 text-primary'
-                                                : 'border-border bg-card text-card-foreground hover:border-primary/30 hover:bg-muted/50'
+                                            ? 'border-primary bg-primary/5 text-primary'
+                                            : 'border-border bg-card text-card-foreground hover:border-primary/30 hover:bg-muted/50'
                                             " @click="room_type = option.value">
                                         <component :is="option.icon"
                                             class="h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
@@ -396,7 +396,7 @@ const submit = () => {
                                 <div class="space-y-2">
                                     <Label for="travellers_number" class="text-sm font-medium">{{
                                         t('reservations.index.travellers')
-                                    }}</Label>
+                                        }}</Label>
                                     <div class="relative">
                                         <Users
                                             class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -409,15 +409,15 @@ const submit = () => {
                                 <div class="space-y-2">
                                     <Label class="text-sm font-medium">{{
                                         t('reservations.index.include_feeding')
-                                        }}</Label>
+                                    }}</Label>
                                     <button type="button"
                                         class="flex h-12 w-full items-center justify-between rounded-xl border-2 px-4 transition-all duration-200"
                                         :class="include_feeding
-                                                ? 'border-primary bg-primary/5 text-primary'
-                                                : 'border-border bg-card hover:border-primary/30 hover:bg-muted/50'
+                                            ? 'border-primary bg-primary/5 text-primary'
+                                            : 'border-border bg-card hover:border-primary/30 hover:bg-muted/50'
                                             " @click="
-                                            include_feeding = !include_feeding
-                                            ">
+                                                include_feeding = !include_feeding
+                                                ">
                                         <span class="flex items-center gap-2 text-sm font-medium">
                                             <Utensils class="h-4 w-4" />
                                             {{
@@ -459,7 +459,7 @@ const submit = () => {
                                     <div class="space-y-2">
                                         <Label for="customer" class="text-sm font-medium">{{
                                             t('reservations.index.customer')
-                                        }}</Label>
+                                            }}</Label>
                                         <div class="relative">
                                             <User
                                                 class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -520,7 +520,7 @@ const submit = () => {
                                     <div class="mb-4 flex items-center justify-between">
                                         <span class="text-sm font-medium text-muted-foreground">{{
                                             t('public_reserve.total')
-                                        }}</span>
+                                            }}</span>
                                         <span class="text-3xl font-bold text-primary transition-transform duration-200"
                                             :class="{ 'scale-105': pricePulse }">
                                             {{ formatCurrency(calculatePrice) }}
@@ -641,7 +641,7 @@ const submit = () => {
                                     </span>
                                     <span class="font-medium tabular-nums">{{
                                         formatCurrency(roomTotal)
-                                    }}
+                                        }}
                                         DZD</span>
                                 </div>
                                 <div v-if="include_feeding" class="flex items-center justify-between text-sm">
@@ -651,7 +651,7 @@ const submit = () => {
                                     </span>
                                     <span class="font-medium tabular-nums">{{
                                         formatCurrency(feedingTotal)
-                                    }}
+                                        }}
                                         DZD</span>
                                 </div>
 
@@ -660,7 +660,7 @@ const submit = () => {
                                 <div class="flex items-end justify-between">
                                     <span class="text-sm font-medium">{{
                                         t('public_reserve.total')
-                                        }}</span>
+                                    }}</span>
                                     <span class="text-3xl font-bold text-primary transition-transform duration-200"
                                         :class="{ 'scale-105': pricePulse }">
                                         {{ formatCurrency(calculatePrice) }}
