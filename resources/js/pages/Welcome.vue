@@ -41,7 +41,7 @@ const isRtl = computed(() => direction.value === 'rtl');
 
 const phoneNumber = '035 76 30 33';
 const phoneLink = 'tel:035763033';
-const whatsappLink = 'https://wa.me/213553013105';
+const whatsappLink = 'https://wa.me/213560619057';
 
 function offerImageUrl(offer: Offer): string {
     return offer.images[0]?.url ?? '/images/alfia.jpeg';

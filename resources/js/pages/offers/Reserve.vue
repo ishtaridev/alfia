@@ -228,14 +228,14 @@ const submit = () => {
 </script>
 
 <template>
+
     <Head :title="offer.title" />
 
     <div class="mx-auto w-full max-w-5xl">
         <!-- Page Header -->
         <div class="mb-8 text-center lg:mb-10">
             <div
-                class="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary"
-            >
+                class="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                 <Calendar class="h-4 w-4" />
                 <span>{{ t('public_reserve.page_title') }}</span>
             </div>
@@ -247,12 +247,8 @@ const submit = () => {
 
         <!-- Empty State -->
         <Card v-if="offer.variants.length === 0" class="overflow-hidden">
-            <CardContent
-                class="flex flex-col items-center justify-center gap-4 py-16 text-center"
-            >
-                <div
-                    class="flex h-16 w-16 items-center justify-center rounded-full bg-muted"
-                >
+            <CardContent class="flex flex-col items-center justify-center gap-4 py-16 text-center">
+                <div class="flex h-16 w-16 items-center justify-center rounded-full bg-muted">
                     <AlertCircle class="h-8 w-8 text-muted-foreground" />
                 </div>
                 <div class="max-w-sm space-y-1">
@@ -275,9 +271,7 @@ const submit = () => {
                         <!-- Trip Details Section -->
                         <div class="border-b bg-muted/30 p-6 sm:p-8">
                             <div class="mb-5 flex items-center gap-3">
-                                <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
-                                >
+                                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                                     <Calendar class="h-5 w-5 text-primary" />
                                 </div>
                                 <div>
@@ -294,49 +288,28 @@ const submit = () => {
 
                             <div class="space-y-4">
                                 <div class="space-y-2">
-                                    <Label
-                                        for="variant"
-                                        class="text-sm font-medium"
-                                        >{{
-                                            t('public_reserve.variant')
-                                        }}</Label
-                                    >
+                                    <Label for="variant" class="text-sm font-medium">{{
+                                        t('public_reserve.variant')
+                                    }}</Label>
                                     <Select v-model="selectedVariantId">
-                                        <SelectTrigger
-                                            class="h-12 w-full rounded-xl border-border bg-card px-4"
-                                        >
-                                            <SelectValue
-                                                :placeholder="
-                                                    t(
-                                                        'public_reserve.select_variant',
-                                                    )
-                                                "
-                                            />
+                                        <SelectTrigger class="h-12 w-full rounded-xl border-border bg-card px-4">
+                                            <SelectValue :placeholder="t(
+                                                'public_reserve.select_variant',
+                                            )
+                                                " />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem
-                                                v-for="variant in offer.variants"
-                                                :key="variant.id"
-                                                :value="variant.id.toString()"
-                                            >
-                                                <div
-                                                    class="flex items-center gap-3"
-                                                >
+                                            <SelectItem v-for="variant in offer.variants" :key="variant.id"
+                                                :value="variant.id.toString()">
+                                                <div class="flex items-center gap-3">
                                                     <span class="font-medium">{{
                                                         formatDate(
                                                             variant.travel_date,
                                                         )
                                                     }}</span>
-                                                    <span
-                                                        class="text-muted-foreground"
-                                                        >—</span
-                                                    >
-                                                    <span
-                                                        class="flex items-center gap-1 text-muted-foreground"
-                                                    >
-                                                        <MapPin
-                                                            class="h-3.5 w-3.5"
-                                                        />
+                                                    <span class="text-muted-foreground">—</span>
+                                                    <span class="flex items-center gap-1 text-muted-foreground">
+                                                        <MapPin class="h-3.5 w-3.5" />
                                                         {{ variant.airport }}
                                                     </span>
                                                 </div>
@@ -346,13 +319,9 @@ const submit = () => {
                                     <InputError :message="errors.variant_id" />
                                 </div>
 
-                                <div
-                                    v-if="selectedVariant"
-                                    class="flex flex-wrap items-center gap-3"
-                                >
+                                <div v-if="selectedVariant" class="flex flex-wrap items-center gap-3">
                                     <div
-                                        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
-                                    >
+                                        class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
                                         <Calendar class="h-4 w-4" />
                                         {{
                                             formatDate(
@@ -361,8 +330,7 @@ const submit = () => {
                                         }}
                                     </div>
                                     <div
-                                        class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium"
-                                    >
+                                        class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium">
                                         <MapPin class="h-4 w-4 text-primary" />
                                         {{ selectedVariant.airport }}
                                     </div>
@@ -374,12 +342,8 @@ const submit = () => {
                             <!-- Room Type -->
                             <div class="mb-8 space-y-4">
                                 <div class="flex items-center gap-3">
-                                    <div
-                                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
-                                    >
-                                        <BedDouble
-                                            class="h-5 w-5 text-primary"
-                                        />
+                                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                                        <BedDouble class="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
                                         <h2 class="text-lg font-semibold">
@@ -389,9 +353,7 @@ const submit = () => {
                                                 )
                                             }}
                                         </h2>
-                                        <p
-                                            class="text-sm text-muted-foreground"
-                                        >
+                                        <p class="text-sm text-muted-foreground">
                                             {{
                                                 t(
                                                     'public_reserve.room_type_label',
@@ -401,33 +363,18 @@ const submit = () => {
                                     </div>
                                 </div>
 
-                                <div
-                                    class="grid grid-cols-2 gap-3 sm:grid-cols-4"
-                                >
-                                    <button
-                                        v-for="option in roomOptions"
-                                        :key="option.value"
-                                        type="button"
+                                <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                                    <button v-for="option in roomOptions" :key="option.value" type="button"
                                         class="group relative flex flex-col items-center gap-2 rounded-xl border-2 p-4 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
-                                        :class="
-                                            room_type === option.value
+                                        :class="room_type === option.value
                                                 ? 'border-primary bg-primary/5 text-primary'
                                                 : 'border-border bg-card text-card-foreground hover:border-primary/30 hover:bg-muted/50'
-                                        "
-                                        @click="room_type = option.value"
-                                    >
-                                        <component
-                                            :is="option.icon"
-                                            class="h-6 w-6 transition-transform duration-200 group-hover:scale-110"
-                                        />
-                                        <span
-                                            class="text-center text-xs leading-tight font-medium"
-                                            >{{ t(option.occupancyKey) }}</span
-                                        >
-                                        <span
-                                            v-if="selectedVariant?.pricing"
-                                            class="text-[10px] opacity-70"
-                                        >
+                                            " @click="room_type = option.value">
+                                        <component :is="option.icon"
+                                            class="h-6 w-6 transition-transform duration-200 group-hover:scale-110" />
+                                        <span class="text-center text-xs leading-tight font-medium">{{
+                                            t(option.occupancyKey) }}</span>
+                                        <span v-if="selectedVariant?.pricing" class="text-[10px] opacity-70">
                                             {{
                                                 formatCurrency(
                                                     getRoomPrice(option.value),
@@ -435,10 +382,8 @@ const submit = () => {
                                             }}
                                             DZD
                                         </span>
-                                        <div
-                                            v-if="room_type === option.value"
-                                            class="absolute -end-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm"
-                                        >
+                                        <div v-if="room_type === option.value"
+                                            class="absolute -end-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
                                             <ArrowRight class="h-3 w-3" />
                                         </div>
                                     </button>
@@ -449,50 +394,31 @@ const submit = () => {
                             <!-- Travellers & Feeding -->
                             <div class="mb-8 grid gap-6 sm:grid-cols-2">
                                 <div class="space-y-2">
-                                    <Label
-                                        for="travellers_number"
-                                        class="text-sm font-medium"
-                                        >{{
-                                            t('reservations.index.travellers')
-                                        }}</Label
-                                    >
+                                    <Label for="travellers_number" class="text-sm font-medium">{{
+                                        t('reservations.index.travellers')
+                                    }}</Label>
                                     <div class="relative">
                                         <Users
-                                            class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-                                        />
-                                        <Input
-                                            id="travellers_number"
-                                            v-model.number="travellers_number"
-                                            type="number"
-                                            min="1"
-                                            required
-                                            class="h-12 rounded-xl ps-10"
-                                        />
+                                            class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                        <Input id="travellers_number" v-model.number="travellers_number" type="number"
+                                            min="1" required class="h-12 rounded-xl ps-10" />
                                     </div>
-                                    <InputError
-                                        :message="errors.travellers_number"
-                                    />
+                                    <InputError :message="errors.travellers_number" />
                                 </div>
 
                                 <div class="space-y-2">
                                     <Label class="text-sm font-medium">{{
                                         t('reservations.index.include_feeding')
-                                    }}</Label>
-                                    <button
-                                        type="button"
+                                        }}</Label>
+                                    <button type="button"
                                         class="flex h-12 w-full items-center justify-between rounded-xl border-2 px-4 transition-all duration-200"
-                                        :class="
-                                            include_feeding
+                                        :class="include_feeding
                                                 ? 'border-primary bg-primary/5 text-primary'
                                                 : 'border-border bg-card hover:border-primary/30 hover:bg-muted/50'
-                                        "
-                                        @click="
+                                            " @click="
                                             include_feeding = !include_feeding
-                                        "
-                                    >
-                                        <span
-                                            class="flex items-center gap-2 text-sm font-medium"
-                                        >
+                                            ">
+                                        <span class="flex items-center gap-2 text-sm font-medium">
                                             <Utensils class="h-4 w-4" />
                                             {{
                                                 t(
@@ -500,24 +426,17 @@ const submit = () => {
                                                 )
                                             }}
                                         </span>
-                                        <Checkbox
-                                            id="include_feeding"
-                                            v-model="include_feeding"
-                                            class="pointer-events-none bg-white"
-                                        />
+                                        <Checkbox id="include_feeding" v-model="include_feeding"
+                                            class="pointer-events-none bg-white" />
                                     </button>
-                                    <InputError
-                                        :message="errors.include_feeding"
-                                    />
+                                    <InputError :message="errors.include_feeding" />
                                 </div>
                             </div>
 
                             <!-- Personal Details -->
                             <div class="mb-8 space-y-4">
                                 <div class="flex items-center gap-3">
-                                    <div
-                                        class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
-                                    >
+                                    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                                         <User class="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
@@ -526,9 +445,7 @@ const submit = () => {
                                                 t('public_reserve.your_details')
                                             }}
                                         </h2>
-                                        <p
-                                            class="text-sm text-muted-foreground"
-                                        >
+                                        <p class="text-sm text-muted-foreground">
                                             {{
                                                 t(
                                                     'public_reserve.form_description',
@@ -540,101 +457,58 @@ const submit = () => {
 
                                 <div class="grid gap-5">
                                     <div class="space-y-2">
-                                        <Label
-                                            for="customer"
-                                            class="text-sm font-medium"
-                                            >{{
-                                                t('reservations.index.customer')
-                                            }}</Label
-                                        >
+                                        <Label for="customer" class="text-sm font-medium">{{
+                                            t('reservations.index.customer')
+                                        }}</Label>
                                         <div class="relative">
                                             <User
-                                                class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-                                            />
-                                            <Input
-                                                id="customer"
-                                                v-model="customer"
-                                                :placeholder="
-                                                    t(
-                                                        'public_reserve.customer_placeholder',
-                                                    )
-                                                "
-                                                required
-                                                class="h-12 rounded-xl ps-10"
-                                            />
+                                                class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                            <Input id="customer" v-model="customer" :placeholder="t(
+                                                'public_reserve.customer_placeholder',
+                                            )
+                                                " required class="h-12 rounded-xl ps-10" />
                                         </div>
-                                        <InputError
-                                            :message="errors.customer"
-                                        />
+                                        <InputError :message="errors.customer" />
                                     </div>
 
                                     <div class="grid gap-5 sm:grid-cols-2">
                                         <div class="space-y-2">
-                                            <Label
-                                                for="phone"
-                                                class="text-sm font-medium"
-                                                >{{
-                                                    t(
-                                                        'reservations.index.phone',
-                                                    )
-                                                }}</Label
-                                            >
+                                            <Label for="phone" class="text-sm font-medium">{{
+                                                t(
+                                                    'reservations.index.phone',
+                                                )
+                                            }}</Label>
                                             <div class="relative">
                                                 <Phone
-                                                    class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-                                                />
-                                                <Input
-                                                    id="phone"
-                                                    v-model="phone"
-                                                    :placeholder="
-                                                        t(
-                                                            'public_reserve.phone_placeholder',
-                                                        )
-                                                    "
-                                                    required
-                                                    class="h-12 rounded-xl ps-10"
-                                                />
+                                                    class="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                                                <Input id="phone" v-model="phone" :placeholder="t(
+                                                    'public_reserve.phone_placeholder',
+                                                )
+                                                    " required class="h-12 rounded-xl ps-10" />
                                             </div>
-                                            <InputError
-                                                :message="errors.phone"
-                                            />
+                                            <InputError :message="errors.phone" />
                                         </div>
 
                                         <div class="space-y-2">
-                                            <Label
-                                                for="wilaya"
-                                                class="text-sm font-medium"
-                                                >{{
-                                                    t(
-                                                        'reservations.index.wilaya',
-                                                    )
-                                                }}</Label
-                                            >
+                                            <Label for="wilaya" class="text-sm font-medium">{{
+                                                t(
+                                                    'reservations.index.wilaya',
+                                                )
+                                            }}</Label>
                                             <Select v-model="wilaya">
                                                 <SelectTrigger
-                                                    class="h-12 w-full rounded-xl border-border bg-card px-4"
-                                                >
-                                                    <SelectValue
-                                                        :placeholder="
-                                                            t(
-                                                                'public_reserve.select_wilaya',
-                                                            )
-                                                        "
-                                                    />
+                                                    class="h-12 w-full rounded-xl border-border bg-card px-4">
+                                                    <SelectValue :placeholder="t(
+                                                        'public_reserve.select_wilaya',
+                                                    )
+                                                        " />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem
-                                                        v-for="w in $page.props
-                                                            .wilayas"
-                                                        :key="w"
-                                                        :value="w"
-                                                        >{{ w }}</SelectItem
-                                                    >
+                                                    <SelectItem v-for="w in $page.props
+                                                        .wilayas" :key="w" :value="w">{{ w }}</SelectItem>
                                                 </SelectContent>
                                             </Select>
-                                            <InputError
-                                                :message="errors.wilaya"
-                                            />
+                                            <InputError :message="errors.wilaya" />
                                         </div>
                                     </div>
                                 </div>
@@ -642,39 +516,19 @@ const submit = () => {
 
                             <!-- Mobile Price Summary -->
                             <div class="mb-6 lg:hidden">
-                                <div
-                                    class="rounded-2xl border-2 border-primary/20 bg-primary/5 p-5"
-                                >
-                                    <div
-                                        class="mb-4 flex items-center justify-between"
-                                    >
-                                        <span
-                                            class="text-sm font-medium text-muted-foreground"
-                                            >{{
-                                                t('public_reserve.total')
-                                            }}</span
-                                        >
-                                        <span
-                                            class="text-3xl font-bold text-primary transition-transform duration-200"
-                                            :class="{ 'scale-105': pricePulse }"
-                                        >
+                                <div class="rounded-2xl border-2 border-primary/20 bg-primary/5 p-5">
+                                    <div class="mb-4 flex items-center justify-between">
+                                        <span class="text-sm font-medium text-muted-foreground">{{
+                                            t('public_reserve.total')
+                                        }}</span>
+                                        <span class="text-3xl font-bold text-primary transition-transform duration-200"
+                                            :class="{ 'scale-105': pricePulse }">
                                             {{ formatCurrency(calculatePrice) }}
-                                            <span
-                                                class="text-sm font-normal text-muted-foreground"
-                                                >DZD</span
-                                            >
+                                            <span class="text-sm font-normal text-muted-foreground">DZD</span>
                                         </span>
                                     </div>
-                                    <Button
-                                        type="submit"
-                                        size="lg"
-                                        class="w-full rounded-xl"
-                                        :disabled="processing"
-                                    >
-                                        <Send
-                                            v-if="!processing"
-                                            class="me-2 h-4 w-4"
-                                        />
+                                    <Button type="submit" size="lg" class="w-full rounded-xl" :disabled="processing">
+                                        <Send v-if="!processing" class="me-2 h-4 w-4" />
                                         {{
                                             processing
                                                 ? t('common.loading')
@@ -686,16 +540,9 @@ const submit = () => {
 
                             <!-- Desktop Submit -->
                             <div class="hidden lg:block">
-                                <Button
-                                    type="submit"
-                                    size="lg"
-                                    class="w-full rounded-xl py-6 text-base"
-                                    :disabled="processing"
-                                >
-                                    <Send
-                                        v-if="!processing"
-                                        class="me-2 h-5 w-5"
-                                    />
+                                <Button type="submit" size="lg" class="w-full rounded-xl py-6 text-base"
+                                    :disabled="processing">
+                                    <Send v-if="!processing" class="me-2 h-5 w-5" />
                                     {{
                                         processing
                                             ? t('common.loading')
@@ -709,28 +556,17 @@ const submit = () => {
             </div>
 
             <!-- Sticky Summary -->
-            <div class="order-1 lg:order-2 lg:col-span-5">
-                <div class="sticky top-6 space-y-6">
+            <div class="order-1 min-w-0 lg:order-2 lg:col-span-5">
+                <div class="sticky top-6 min-w-0 space-y-6">
                     <!-- Offer Preview Card -->
                     <Card class="overflow-hidden border-0 shadow-xl">
-                        <div class="relative h-40 overflow-hidden">
-                            <img
-                                v-if="offer.images.length > 0"
-                                :src="offer.images[0].url"
-                                :alt="offer.title"
-                                class="h-full w-full object-cover"
-                            />
-                            <div
-                                v-else
-                                class="flex h-full w-full items-center justify-center bg-muted"
-                            >
-                                <BedDouble
-                                    class="h-12 w-12 text-muted-foreground/40"
-                                />
+                        <div class="relative h-40 w-full overflow-hidden">
+                            <img v-if="offer.images.length > 0" :src="offer.images[0].url" :alt="offer.title"
+                                class="h-full w-full object-cover" />
+                            <div v-else class="flex h-full w-full items-center justify-center bg-muted">
+                                <BedDouble class="h-12 w-12 text-muted-foreground/40" />
                             </div>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
-                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                             <div class="absolute start-0 bottom-0 p-5">
                                 <h3 class="text-lg font-bold text-white">
                                     {{ offer.title }}
@@ -744,16 +580,11 @@ const submit = () => {
                             <div v-if="selectedVariant" class="space-y-3">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10"
-                                    >
-                                        <Calendar
-                                            class="h-5 w-5 text-primary"
-                                        />
+                                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                                        <Calendar class="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
-                                        <p
-                                            class="text-xs text-muted-foreground"
-                                        >
+                                        <p class="text-xs text-muted-foreground">
                                             {{
                                                 t(
                                                     'reservations.index.travel_date',
@@ -771,14 +602,11 @@ const submit = () => {
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10"
-                                    >
+                                        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
                                         <MapPin class="h-5 w-5 text-primary" />
                                     </div>
                                     <div>
-                                        <p
-                                            class="text-xs text-muted-foreground"
-                                        >
+                                        <p class="text-xs text-muted-foreground">
                                             {{
                                                 t('reservations.index.airport')
                                             }}
@@ -795,54 +623,36 @@ const submit = () => {
                     <!-- Pricing Breakdown -->
                     <Card class="overflow-hidden border-0 shadow-xl">
                         <CardContent class="p-5">
-                            <h3
-                                class="mb-4 flex items-center gap-2 text-base font-semibold"
-                            >
+                            <h3 class="mb-4 flex items-center gap-2 text-base font-semibold">
                                 <Wallet class="h-5 w-5 text-primary" />
                                 {{ t('public_reserve.pricing_breakdown') }}
                             </h3>
 
-                            <div
-                                v-if="selectedVariant?.pricing"
-                                class="space-y-3"
-                            >
-                                <div
-                                    class="flex items-center justify-between text-sm"
-                                >
+                            <div v-if="selectedVariant?.pricing" class="space-y-3">
+                                <div class="flex items-center justify-between text-sm">
                                     <span class="text-muted-foreground">
                                         {{
                                             t(
                                                 'reservations.room_type.' +
-                                                    room_type,
+                                                room_type,
                                             )
                                         }}
-                                        <span class="text-xs"
-                                            >× {{ travellers_number }}</span
-                                        >
+                                        <span class="text-xs">× {{ travellers_number }}</span>
                                     </span>
-                                    <span class="font-medium tabular-nums"
-                                        >{{
-                                            formatCurrency(roomTotal)
-                                        }}
-                                        DZD</span
-                                    >
+                                    <span class="font-medium tabular-nums">{{
+                                        formatCurrency(roomTotal)
+                                    }}
+                                        DZD</span>
                                 </div>
-                                <div
-                                    v-if="include_feeding"
-                                    class="flex items-center justify-between text-sm"
-                                >
+                                <div v-if="include_feeding" class="flex items-center justify-between text-sm">
                                     <span class="text-muted-foreground">
                                         {{ t('reservations.index.feeding') }}
-                                        <span class="text-xs"
-                                            >× {{ travellers_number }}</span
-                                        >
+                                        <span class="text-xs">× {{ travellers_number }}</span>
                                     </span>
-                                    <span class="font-medium tabular-nums"
-                                        >{{
-                                            formatCurrency(feedingTotal)
-                                        }}
-                                        DZD</span
-                                    >
+                                    <span class="font-medium tabular-nums">{{
+                                        formatCurrency(feedingTotal)
+                                    }}
+                                        DZD</span>
                                 </div>
 
                                 <Separator />
@@ -850,16 +660,11 @@ const submit = () => {
                                 <div class="flex items-end justify-between">
                                     <span class="text-sm font-medium">{{
                                         t('public_reserve.total')
-                                    }}</span>
-                                    <span
-                                        class="text-3xl font-bold text-primary transition-transform duration-200"
-                                        :class="{ 'scale-105': pricePulse }"
-                                    >
+                                        }}</span>
+                                    <span class="text-3xl font-bold text-primary transition-transform duration-200"
+                                        :class="{ 'scale-105': pricePulse }">
                                         {{ formatCurrency(calculatePrice) }}
-                                        <span
-                                            class="text-sm font-normal text-muted-foreground"
-                                            >DZD</span
-                                        >
+                                        <span class="text-sm font-normal text-muted-foreground">DZD</span>
                                     </span>
                                 </div>
                                 <p class="text-xs text-muted-foreground">
@@ -873,10 +678,7 @@ const submit = () => {
                                 </p>
                             </div>
 
-                            <div
-                                v-else
-                                class="py-6 text-center text-sm text-muted-foreground"
-                            >
+                            <div v-else class="py-6 text-center text-sm text-muted-foreground">
                                 {{ t('public_reserve.select_variant') }}
                             </div>
                         </CardContent>
@@ -885,20 +687,17 @@ const submit = () => {
                     <!-- Trust Signals -->
                     <div class="grid grid-cols-3 gap-3">
                         <div
-                            class="flex flex-col items-center gap-2 rounded-xl bg-card/50 p-3 text-center text-xs text-muted-foreground"
-                        >
+                            class="flex flex-col items-center gap-2 rounded-xl bg-card/50 p-3 text-center text-xs text-muted-foreground">
                             <ShieldCheck class="h-5 w-5 text-primary" />
                             <span>{{ t('public_reserve.trust_secure') }}</span>
                         </div>
                         <div
-                            class="flex flex-col items-center gap-2 rounded-xl bg-card/50 p-3 text-center text-xs text-muted-foreground"
-                        >
+                            class="flex flex-col items-center gap-2 rounded-xl bg-card/50 p-3 text-center text-xs text-muted-foreground">
                             <Clock class="h-5 w-5 text-primary" />
                             <span>{{ t('public_reserve.trust_instant') }}</span>
                         </div>
                         <div
-                            class="flex flex-col items-center gap-2 rounded-xl bg-card/50 p-3 text-center text-xs text-muted-foreground"
-                        >
+                            class="flex flex-col items-center gap-2 rounded-xl bg-card/50 p-3 text-center text-xs text-muted-foreground">
                             <Headphones class="h-5 w-5 text-primary" />
                             <span>{{ t('public_reserve.trust_support') }}</span>
                         </div>
