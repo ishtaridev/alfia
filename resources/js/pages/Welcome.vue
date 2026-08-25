@@ -39,8 +39,8 @@ const { t, locale, direction, setLocale } = useLocale();
 
 const isRtl = computed(() => direction.value === 'rtl');
 
-const phoneNumber = '035 76 30 33';
-const phoneLink = 'tel:035763033';
+const phoneNumber = '0560 61 90 57';
+const phoneLink = 'tel:0560619057';
 const whatsappLink = 'https://wa.me/213560619057';
 
 function offerImageUrl(offer: Offer): string {
