@@ -97,33 +97,39 @@ const languages = [
 const facebookComments = [
     {
         name: 'Sabi Nafissa Djema',
-        avatar: 'https://scontent.fqsf1-1.fna.fbcdn.net/v/t39.30808-1/518374103_1783971572518740_6492545234124785641_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx480x478&ctp=s40x40&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_ohc=yf2n1-DCdj8Q7kNvwEFauZr&_nc_oc=AdopWiSXx_HOENTu8Ztt_ssGcgLQE7VP5CVxPuYQmsjQU_9zBod9r8gcUVcy6jiZ8t8&_nc_zt=24&_nc_ht=scontent.fqsf1-1.fna&_nc_gid=L-HKoziBbeneA3j-V4Acqw&_nc_ss=7b2a8&oh=00_AQEPEE1LGVi1cVvNqmzbxdvoHXJgXYG7R9yHJ2bek6ZZ7Q&oe=6A8B5777',
         body: 'بدون مجاملة اعتمرت معكم في 2019 فندق انجم مع المرشد السيد الخلوق شريف وكانت رحلة ممتعة',
+        likes: 12,
+        replies: 2,
     },
     {
         name: 'Tulipe Taqwa',
-        avatar: 'https://scontent.fqsf1-1.fna.fbcdn.net/v/t39.30808-1/489531033_977817561092661_1041869638892551891_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx536x531&ctp=p40x40&_nc_cat=102&ccb=1-7&_nc_sid=e99d92&_nc_ohc=t6dB7KqALNwQ7kNvwG-Cz4k&_nc_oc=AdoKbspSBidBRSk_e8mOjZ-JSJ8bqphmv8RmHjJd9X4lrS0vPLWm4mZZ1K_23aKn1ys&_nc_zt=24&_nc_ht=scontent.fqsf1-1.fna&_nc_gid=L-HKoziBbeneA3j-V4Acqw&_nc_ss=7b2a8&oh=00_AQEr1wjZD1tx-dk_VJwfjhgK1dI7T7hs9Gw7nDmnI8FXWA&oe=6A8B7345',
         body: 'رحنا معاكم قبل عام ونصف كانت رحلة جميلة جدا وخاصة اختيار الفنادق والتنظيم 👌🏻 ، الله يرزقنا العودة 😢',
+        likes: 24,
+        replies: 4,
     },
     {
         name: 'Samira Samirab',
-        avatar: 'https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-1/492553429_2722779091260409_8601223917656287712_n.jpg?stp=dst-jpg_tt6&cstp=mx736x735&ctp=s100x100&_nc_cat=106&ccb=1-7&_nc_sid=e99d92&_nc_ohc=27bMjzwh6AsQ7kNvwG2PO84&_nc_oc=AdqVsd0tY-eq9UCgXhgfdRnd2gmm_pjIE5EypGFbJbI2Mp6fnRIPKGj2J0eNWQONfn0&_nc_zt=24&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=PM4EiE2bbISyAJO9OuhUSg&_nc_ss=7b2a8&oh=00_AQFqwWmeEQWr8kD6ikaYQjKSbm2ImMlG21_rAG1ji5-mog&oe=6A8B480B',
         body: 'وكالة الأليفة من بكري معروفة بصدقها وطيبة اهلها والعاملين لي فيها قمة في الاخلاق والتواضع ربي يوفق',
+        likes: 18,
+        replies: 3,
     },
     {
         name: 'الحمد الله',
-        avatar: 'https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-1/752845733_122106237333397908_7847580169119069157_n.jpg?stp=dst-jpg_tt6&cstp=mx736x732&ctp=s100x100&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=S0GjnJT8RgIQ7kNvwFtD3dq&_nc_oc=AdowEmuK9jfsUxUMmi2ZEprtBM_bRXU5ZsCjqzlTlQu8oWvykx3jPX8J8MmXy3Zuvbw&_nc_zt=24&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=yb2Y_MvOXr8ZaSofOEomeA&_nc_ss=7b2a8&oh=00_AQEtCMllS1ALmTmK2qRhiCJHcyga5H4qAAfiFUG0eHg9OA&oe=6A8B48FB',
         body: 'وكالة في القمة ماشاء الله تنظيم إحترافية وأخلاق ربي يوفقكم ويبارك فيكم وفي خدمتكم لضيوف الرحمان وربي يبارك في المرشدين ويكتبلكم الأجر والثواب وراح نكون ان شاء الله بين أيديكم في عمرة أخرى ❤️🕋',
+        likes: 42,
+        replies: 6,
     },
     {
         name: 'Rabah Ammari',
-        avatar: 'https://scontent.fqsf1-2.fna.fbcdn.net/v/t39.30808-1/515371883_703983429148110_729023542988990592_n.jpg?stp=c0.108.720.720a_cp0_dst-jpg_tt6&cstp=mx720x720&ctp=s40x40&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_ohc=6fgptcWIL98Q7kNvwEpLsAd&_nc_oc=AdofGGvTGrK0ZbxY5wCHA2vT3akhNu04G0FAtJeSsXuFEs8BQodpu6QWAzYmjJxFL7c&_nc_zt=24&_nc_ht=scontent.fqsf1-2.fna&_nc_gid=WkX52_xphZu1q0B5rPZpFg&_nc_ss=7b2a8&oh=00_AQG5qTGKrBdGKSsWMORY1H7JZE3MHtoPuPwX07eJ1f2ljw&oe=6A8B7152',
         body: 'والله غير وكاله الألفية مشاء الله بيدون مجملة',
+        likes: 9,
+        replies: 1,
     },
     {
         name: 'Walid Booyka',
-        avatar: 'https://scontent.fqsf1-1.fna.fbcdn.net/v/t39.30808-1/351327571_1020609182261009_3543011170771563675_n.jpg?stp=cp0_dst-jpg_tt6&cstp=mx950x960&ctp=s40x40&_nc_cat=111&ccb=1-7&_nc_sid=1d2534&_nc_ohc=CnoRuewLFZ0Q7kNvwHrjhkQ&_nc_oc=Adp-Flbh7PD-Fa3hfvkQCFbceWDyxt7CSNqQxXnq_QlZl5MzZ7ATAfyd5gv-mfBsNbI&_nc_zt=24&_nc_ht=scontent.fqsf1-1.fna&_nc_gid=rzYI4OBXPQYuQHliuimc6g&_nc_ss=7b2a8&oh=00_AQG8sFbdwMbSZaG6g8O6b8t-zupf-0UaLUiHCAObfb4j6g&oe=6A8B4D7C',
         body: 'رحت في هاذ الرحلة كانت افضل رحلة في حياتي زيارة البقاع المقدسة وكانت مجمموعة مشاء الله كنا عايلة نتمنى نعاود نولى',
+        likes: 31,
+        replies: 5,
     },
 ];
 
@@ -386,31 +392,33 @@ const endFadeClass = computed(() =>
                         :dir="direction">
                         <div v-for="(comment, index) in duplicatedComments" :key="index"
                             class="w-[22rem] shrink-0 rounded-xl bg-white p-4 shadow-sm">
-                            <div class="flex items-start gap-3">
-                                <img :src="comment.avatar" :alt="comment.name"
-                                    class="h-10 w-10 shrink-0 rounded-full border border-black/5 object-cover"
-                                    loading="lazy" />
-                                <div class="min-w-0 flex-1">
-                                    <div class="inline-block max-w-full rounded-2xl bg-[#f0f2f5] px-3.5 py-2">
-                                        <p class="text-sm font-bold text-[#050505]">
-                                            {{ comment.name }}
-                                        </p>
-                                        <p class="mt-0.5 text-sm leading-relaxed break-words text-[#050505]">
-                                            {{ comment.body }}
-                                        </p>
-                                    </div>
-                                    <div class="mt-1 flex items-center gap-2 px-1 text-xs font-bold text-[#65676b]">
-                                        <button type="button" class="hover:underline">
-                                            {{ t('welcome.testimonials_like') }}
-                                        </button>
-                                        <span>·</span>
-                                        <button type="button" class="hover:underline">
-                                            {{
-                                                t('welcome.testimonials_reply')
-                                            }}
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="inline-block max-w-full rounded-2xl bg-[#f0f2f5] px-3.5 py-2">
+                                <p class="text-sm font-bold text-[#050505]">
+                                    {{ comment.name }}
+                                </p>
+                                <p class="mt-0.5 text-sm leading-relaxed break-words text-[#050505]">
+                                    {{ comment.body }}
+                                </p>
+                            </div>
+                            <div class="mt-2 flex items-center gap-4 px-1 text-xs font-bold text-[#65676b]">
+                                <button type="button" class="flex items-center gap-1 hover:text-[#050505]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="h-4 w-4">
+                                        <path d="M7 10v12" />
+                                        <path
+                                            d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
+                                    </svg>
+                                    <span>{{ comment.likes }}</span>
+                                </button>
+                                <button type="button" class="flex items-center gap-1 hover:text-[#050505]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="h-4 w-4">
+                                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+                                    </svg>
+                                    <span>{{ comment.replies }}</span>
+                                </button>
                             </div>
                         </div>
                     </div>

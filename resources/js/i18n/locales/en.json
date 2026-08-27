@@ -207,10 +207,6 @@
             "current_password": "Current password",
             "new_password": "New password",
             "confirm_password": "Confirm password"
-        },
-        "appearance": {
-            "title": "Appearance settings",
-            "description": "Update the appearance settings for your account"
         }
     },
     "delete_user": {
@@ -221,11 +217,6 @@
         "confirm_title": "Are you sure you want to delete your account?",
         "confirm_description": "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
         "submit": "Delete account"
-    },
-    "appearance": {
-        "light": "Light",
-        "dark": "Dark",
-        "system": "System"
     },
     "errors": {
         "something_went_wrong": "Something went wrong."
@@ -254,8 +245,6 @@
         "testimonials_title": "What travellers say",
         "testimonials_subtitle": "Real comments from our pilgrims and travellers.",
         "testimonials_placeholder_note": "Placeholder — replace with real testimonial",
-        "testimonials_like": "Like",
-        "testimonials_reply": "Reply",
         "contact_title": "Visit or call us",
         "contact_subtitle": "Our team is ready to help you choose the right package.",
         "contact_phone": "Phone",

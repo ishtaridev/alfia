@@ -207,10 +207,6 @@
             "current_password": "Mot de passe actuel",
             "new_password": "Nouveau mot de passe",
             "confirm_password": "Confirmer le mot de passe"
-        },
-        "appearance": {
-            "title": "Paramètres d'apparence",
-            "description": "Mettez à jour les paramètres d'apparence de votre compte"
         }
     },
     "delete_user": {
@@ -221,11 +217,6 @@
         "confirm_title": "Êtes-vous sûr de vouloir supprimer votre compte?",
         "confirm_description": "Une fois votre compte supprimé, toutes ses ressources et données seront également supprimées de manière permanente. Veuillez entrer votre mot de passe pour confirmer que vous souhaitez supprimer définitivement votre compte.",
         "submit": "Supprimer le compte"
-    },
-    "appearance": {
-        "light": "Clair",
-        "dark": "Sombre",
-        "system": "Système"
     },
     "errors": {
         "something_went_wrong": "Une erreur s'est produite."
@@ -254,8 +245,6 @@
         "testimonials_title": "Ce que disent les voyageurs",
         "testimonials_subtitle": "Vrais commentaires de nos pèlerins et voyageurs.",
         "testimonials_placeholder_note": "Exemple — remplacez par un vrai témoignage",
-        "testimonials_like": "J'aime",
-        "testimonials_reply": "Répondre",
         "contact_title": "Visitez-nous ou appelez-nous",
         "contact_subtitle": "Notre équipe est prête à vous aider à choisir le forfait adapté.",
         "contact_phone": "Téléphone",
