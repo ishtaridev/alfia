@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { LayoutGrid, Plane, Users } from '@lucide/vue';
+import { LayoutGrid, Plane, Users, GraduationCap } from '@lucide/vue';
 import { computed } from 'vue';
 import AppLogo from '@/components/AppLogo.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/sidebar';
 import { useLocale } from '@/composables/useLocale';
 import { dashboard } from '@/routes';
+import { index as mentorsIndex } from '@/routes/admin/mentors';
 import { index as offersIndex } from '@/routes/offers';
 import { index as usersIndex } from '@/routes/users';
 import type { NavItem } from '@/types';
@@ -43,6 +44,12 @@ const mainNavItems = computed<NavItem[]>(() => {
             title: t('navigation.offers'),
             href: offersIndex().url,
             icon: Plane,
+        });
+
+        items.push({
+            title: t('navigation.mentors'),
+            href: mentorsIndex().url,
+            icon: GraduationCap,
         });
     }
 

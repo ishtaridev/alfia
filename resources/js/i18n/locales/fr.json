@@ -21,6 +21,7 @@
         "dashboard": "Tableau de bord",
         "offers": "Offres",
         "users": "Utilisateurs",
+        "mentors": "Mentors",
         "settings": "Paramètres",
         "logout": "Déconnexion",
         "platform": "Plateforme",
@@ -292,6 +293,38 @@
         "role": {
             "admin": "Administrateur",
             "superadmin": "Super Administrateur"
+        }
+    },
+    "mentors": {
+        "register": {
+            "page_title": "Inscription Mentor",
+            "badge": "Rejoignez-nous",
+            "title": "S'inscrire comme Mentor",
+            "description": "Entrez vos coordonnées pour rejoindre notre liste de mentors",
+            "full_name": "Nom complet",
+            "full_name_placeholder": "ex: Jean Dupont",
+            "phone": "Numéro de téléphone",
+            "phone_placeholder": "ex: 0555123456",
+            "commune": "Commune",
+            "select_commune": "Sélectionner une commune",
+            "submit": "S'inscrire",
+            "success_title": "Inscription réussie",
+            "success_heading": "Merci de vous être inscrit !",
+            "success_description": "Vos informations ont été reçues et nous vous contacterons bientôt.",
+            "summary_title": "Récapitulatif de l'inscription",
+            "back_to_form": "Retour au formulaire"
+        },
+        "admin": {
+            "index": {
+                "title": "Mentors",
+                "description": "Gérer les mentors inscrits",
+                "search_placeholder": "Rechercher par nom...",
+                "select_commune": "Sélectionner une commune",
+                "clear_filters": "Effacer les filtres",
+                "empty_title": "Aucun mentor pour l'instant",
+                "empty_description": "Les mentors inscrits apparaîtront ici.",
+                "no_results": "Aucun mentor ne correspond aux filtres sélectionnés."
+            }
         }
     },
     "editor": {

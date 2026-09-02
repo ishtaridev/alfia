@@ -21,6 +21,7 @@
         "dashboard": "Dashboard",
         "offers": "Offers",
         "users": "Users",
+        "mentors": "Mentors",
         "settings": "Settings",
         "logout": "Log out",
         "platform": "Platform",
@@ -292,6 +293,38 @@
         "role": {
             "admin": "Admin",
             "superadmin": "Super Admin"
+        }
+    },
+    "mentors": {
+        "register": {
+            "page_title": "Mentor Registration",
+            "badge": "Join us",
+            "title": "Register as a Mentor",
+            "description": "Enter your details to join our mentors list",
+            "full_name": "Full Name",
+            "full_name_placeholder": "e.g. John Doe",
+            "phone": "Phone Number",
+            "phone_placeholder": "e.g. 0555123456",
+            "commune": "Commune",
+            "select_commune": "Select a commune",
+            "submit": "Register",
+            "success_title": "Registration Successful",
+            "success_heading": "Thank you for registering!",
+            "success_description": "Your information has been received and we will contact you soon.",
+            "summary_title": "Registration Summary",
+            "back_to_form": "Back to form"
+        },
+        "admin": {
+            "index": {
+                "title": "Mentors",
+                "description": "Manage registered mentors",
+                "search_placeholder": "Search by name...",
+                "select_commune": "Select a commune",
+                "clear_filters": "Clear filters",
+                "empty_title": "No mentors yet",
+                "empty_description": "Registered mentors will appear here.",
+                "no_results": "No mentors match the selected filters."
+            }
         }
     },
     "editor": {

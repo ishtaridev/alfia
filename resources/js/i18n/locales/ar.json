@@ -21,6 +21,7 @@
         "dashboard": "لوحة التحكم",
         "offers": "العروض",
         "users": "المستخدمين",
+        "mentors": "المرشدون",
         "settings": "الإعدادات",
         "logout": "تسجيل الخروج",
         "platform": "المنصة",
@@ -292,6 +293,38 @@
         "role": {
             "admin": "مسؤول",
             "superadmin": "مسؤول أعلى"
+        }
+    },
+    "mentors": {
+        "register": {
+            "page_title": "تسجيل مرشد",
+            "badge": "انضم إلينا",
+            "title": "تسجيل كمرشد",
+            "description": "أدخل بياناتك للانضمام إلى قائمة المرشدين",
+            "full_name": "الاسم الكامل",
+            "full_name_placeholder": "مثال: محمد أحمد",
+            "phone": "رقم الهاتف",
+            "phone_placeholder": "مثال: 0555123456",
+            "commune": "البلدية",
+            "select_commune": "اختر بلدية",
+            "submit": "تسجيل",
+            "success_title": "تم التسجيل",
+            "success_heading": "شكراً لتسجيلك!",
+            "success_description": "لقد تم استلام بياناتك وسنتواصل معك قريباً.",
+            "summary_title": "ملخص التسجيل",
+            "back_to_form": "العودة إلى النموذج"
+        },
+        "admin": {
+            "index": {
+                "title": "المرشدون",
+                "description": "إدارة المرشدين المسجلين",
+                "search_placeholder": "البحث بالاسم...",
+                "select_commune": "اختر بلدية",
+                "clear_filters": "مسح الفلاتر",
+                "empty_title": "لا يوجد مرشدون بعد",
+                "empty_description": "سيتم عرض المرشدين المسجلين هنا.",
+                "no_results": "لا توجد نتائج مطابقة للفلاتر المحددة."
+            }
         }
     },
     "editor": {
