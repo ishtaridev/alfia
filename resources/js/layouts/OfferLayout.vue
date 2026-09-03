@@ -52,14 +52,14 @@ const openLightbox = (index: number) => {
             <!-- Offer Info Section -->
             <div v-if="offer" class="mb-8 space-y-6">
                 <!-- Title -->
-                <div class="text-center">
-                    <h1 class="text-3xl font-bold tracking-tight">{{ offer.title }}</h1>
-                    <p class="mt-1 text-sm text-muted-foreground">{{ offer.code }}</p>
+                <div class="text-center text-white">
+                    <h1 class="text-3xl font-bold">{{ offer.title }}</h1>
                 </div>
 
                 <!-- Description -->
                 <div v-if="offer.description" class="rounded-lg border bg-card p-6">
-                    <div class="prose prose-sm mx-auto max-w-none text-muted-foreground" v-html="offer.description" />
+                    <div class="prose prose-sm mx-auto max-w-none text-white prose-h3:text-white
+                        prose-strong:text-white" v-html="offer.description" />
                 </div>
 
                 <!-- Image Gallery -->

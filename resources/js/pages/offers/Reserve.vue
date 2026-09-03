@@ -242,7 +242,6 @@ const submit = () => {
             <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">
                 {{ offer.title }}
             </h1>
-            <p class="mt-1 text-sm text-muted-foreground">{{ offer.code }}</p>
         </div>
 
         <!-- Empty State -->
@@ -571,9 +570,6 @@ const submit = () => {
                                 <h3 class="text-lg font-bold text-white">
                                     {{ offer.title }}
                                 </h3>
-                                <p class="text-xs text-white/80">
-                                    {{ offer.code }}
-                                </p>
                             </div>
                         </div>
                         <CardContent class="p-5">
